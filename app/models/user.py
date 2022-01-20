@@ -10,6 +10,15 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    name = db.Column(db.String(100), nullable=False)
+    bio = db.Column(db.String(2200))
+    profilePicImg = db.Column(db.String(2000))
+    bannerPicImg = db.Column(db.String(2000))
+    phoneNumber = db.Column(db.BigInteger())
+    menu = db.Column(db.Boolean, default=False)
+
+    links = db.relationship('Link', back_populates='users')
+    menus = db.relationship('Menu', back_populates='users')
 
     @property
     def password(self):
@@ -26,5 +35,11 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'name': self.name,
+            'bio': self.bio,
+            'profilePicImg': self.profilePicImg,
+            'bannerPicImg': self.bannerPicImg,
+            'phoneNumber': self.phoneNumber,
+            'menu': self.menu
         }
