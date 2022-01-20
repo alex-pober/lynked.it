@@ -9,13 +9,19 @@ const SignUpForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
+  const [name, setName] = useState('');
+  const [bio, setBio] = useState('');
+  const [profilePicImg, setprofilePicImg] = useState('');
+  const [bannerPicImg, setbannerPicImg] = useState('');
+  const [phoneNumber, setphoneNumber] = useState('');
+  const [menu, setmenu] = useState(false);
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
+      const data = await dispatch(signUp(username, email, password, name, bio, profilePicImg, bannerPicImg, phoneNumber, menu));
       if (data) {
         setErrors(data)
       }
@@ -36,6 +42,30 @@ const SignUpForm = () => {
 
   const updateRepeatPassword = (e) => {
     setRepeatPassword(e.target.value);
+  };
+
+  const updateName = (e) => {
+    setName(e.target.value);
+  };
+
+  const updateBio = (e) => {
+    setBio(e.target.value);
+  };
+
+  const updateprofilePicImg = (e) => {
+    setprofilePicImg(e.target.value);
+  };
+
+  const updatebannerPicImg = (e) => {
+    setbannerPicImg(e.target.value);
+  };
+
+  const updatephoneNumber = (e) => {
+    setphoneNumber(e.target.value);
+  };
+
+  const updatemenu = (e) => {
+    setmenu(e.target.checked);
   };
 
   if (user) {
@@ -84,6 +114,60 @@ const SignUpForm = () => {
           onChange={updateRepeatPassword}
           value={repeatPassword}
           required={true}
+        ></input>
+      </div>
+      <div>
+        <label>Name</label>
+        <input
+          type='text'
+          name='name'
+          onChange={updateName}
+          value={name}
+        ></input>
+      </div>
+      <div>
+        <label>Bio</label>
+        <textarea
+          type='text'
+          name='bio'
+          onChange={updateBio}
+          value={bio}
+        ></textarea>
+      </div>
+      <div>
+        <label>Profile Picture URL</label>
+        <input
+          type='text'
+          name='profilePicImg'
+          onChange={updateprofilePicImg}
+          value={profilePicImg}
+        ></input>
+      </div>
+      <div>
+        <label>Banner Picture URL</label>
+        <input
+          type='text'
+          name='bannerPicImg'
+          onChange={updatebannerPicImg}
+          value={bannerPicImg}
+        ></input>
+      </div>
+      <div>
+        <label>Phone Number</label>
+        <input
+          type='text'
+          name='phoneNumber'
+          onChange={updatephoneNumber}
+          value={phoneNumber}
+        ></input>
+      </div>
+      <div>
+        <label>Menu</label>
+        <input
+          type='checkbox'
+          name='menu'
+          onChange={updatemenu}
+          value={menu}
         ></input>
       </div>
       <button type='submit'>Sign Up</button>

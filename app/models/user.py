@@ -17,8 +17,8 @@ class User(db.Model, UserMixin):
     phoneNumber = db.Column(db.BigInteger())
     menu = db.Column(db.Boolean, default=False)
 
-    links = db.relationship('Link', back_populates='users')
-    menus = db.relationship('Menu', back_populates='users')
+    links = db.relationship('Link', back_populates='users', cascade="all,delete")
+    menus = db.relationship('Menu', back_populates='users', cascade="all,delete")
 
     @property
     def password(self):

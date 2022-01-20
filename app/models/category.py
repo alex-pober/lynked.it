@@ -8,7 +8,7 @@ class Category(db.Model):
     title = db.Column(db.String(1000), nullable=False)
 
     menus = db.relationship("Menu", back_populates="categories")
-    items = db.relationship("Item", back_populates="categories")
+    items = db.relationship("Item", back_populates="categories", cascade="all,delete")
 
     def to_dict(self):
 
