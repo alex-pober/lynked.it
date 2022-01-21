@@ -12,6 +12,7 @@ const EditCommentForm = () => {
     }, [dispatch])
 
     const linkId = useSelector(state => state?.link?.link)
+    console.log(linkId)
     const history = useHistory();
     const [errors, setErrors] = useState([]);
     const [title, setTitle] = useState('');
@@ -22,12 +23,10 @@ const EditCommentForm = () => {
             return state.session.user.id
         }})
 
-        useEffect(() => {
-            setTitle(linkId?.title)
-            setLink(linkId?.link)
-        }, [])
-
-        console.log(linkId?.title)
+    useEffect(() => {
+        setTitle(linkId?.title)
+        setLink(linkId?.link)
+    }, [linkId])
 
     const updateTitle = e => {
         setTitle(e.target.value)
@@ -48,15 +47,15 @@ const EditCommentForm = () => {
             link,
         }
 
-        let submitted = await dispatch(updateOneLink(editLink))
-        .catch(async res => {
-            const data = await res.json();
-            if (data && data.errors) setErrors(data.errors);
-        })
-        if (submitted) {
-            // setEditPopUp(!editPopUp)
-            // sendDataToParent(!editPopUp)
-        }
+        await dispatch(updateOneLink(editLink))
+        // .catch(async res => {
+        //     const data = await res.json();
+        //     if (data && data.errors) setErrors(data.errors);
+        // })
+        // if (submitted) {
+        //     // setEditPopUp(!editPopUp)
+        //     // sendDataToParent(!editPopUp)
+        // }
     }
 
     return (

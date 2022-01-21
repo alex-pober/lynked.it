@@ -14,9 +14,9 @@ const getOneLink = link => ({
     payload: link
 });
 
-const addLink = link => ({
+const addLink = singleLink => ({
     type: ADD_LINK,
-    payload: link
+    payload: singleLink
 })
 
 const updateLink = link => ({
@@ -69,6 +69,7 @@ export const getOneLinks = (id) => async dispatch => {
 }
 
 export const updateOneLink = link => async dispatch => {
+    console.log(link)
     const response = await fetch(`/api/links/${link.id}`, {
         method: 'PUT',
         headers: {
@@ -78,7 +79,7 @@ export const updateOneLink = link => async dispatch => {
     })
     if (response.ok) {
         const data = await response.json();
-        dispatch(updateLink(data))
+        dispatch(addLink(data))
         return data
     }
 }
@@ -90,24 +91,18 @@ export default function (state = initialState, action) {
     switch (action.type) {
 
         case GET_LINK:
-            newState={...state}
-            return {link: action.payload}
+            newState = { ...state }
+            return newState
 
         case GET_ONE_LINK:
-            const newState = { ...state }
             return {link: action.payload}
 
         case ADD_LINK:
-            newState = {
-                ...state,
-                [action.payload.id]: action.payload
-            }
-            return newState
+            return {...action.payload}
 
-        case UPDATE_LINK:
-            state[action.payload] = action.payload.id;
-            newState = { ...state };
-            return newState
+        // case UPDATE_LINK:
+        //     newState = {link: action.payload}
+        //     return newState
 
         case DELETE_LINK:
             newState = { ...state }

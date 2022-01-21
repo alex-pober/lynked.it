@@ -40,15 +40,15 @@ def new_post():
     return (form.errors)
 
 #PUT /api/links/:id
-@link_routes.route('/', methods=["PUT"])
+@link_routes.route('/<id>', methods=["PUT"])
 @login_required
 def update_link(id):
     form = NewLinkForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         link = Link.query.get(id)
-        link.title = form.data['link']
-        link.link = form.data['title']
+        link.title = form.data['title']
+        link.link = form.data['link']
         db.session.commit()
         return {'link': link.to_dict()}
     return (form.errors)
