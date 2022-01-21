@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from app.models import db
 from flask_login import login_required, current_user
-from app.models import db, Link
+from app.models import db, Link, User
 from app.forms import NewLinkForm
 
 
@@ -58,6 +58,6 @@ def update_link(id):
 @login_required
 def delete_link(id):
     link = Link.query.get(id)
-    db.session.delete(post)
+    db.session.delete(link)
     db.session.commit()
     return "Post deleted"

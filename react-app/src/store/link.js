@@ -69,7 +69,6 @@ export const getOneLinks = (id) => async dispatch => {
 }
 
 export const updateOneLink = link => async dispatch => {
-    console.log(link)
     const response = await fetch(`/api/links/${link.id}`, {
         method: 'PUT',
         headers: {
@@ -84,6 +83,16 @@ export const updateOneLink = link => async dispatch => {
     }
 }
 
+export const deleteOneLink = id => async dispatch => {
+    const res = await fetch(`/api/links/${id}`, {
+        method: 'DELETE',
+    })
+    if (res.ok) {
+        dispatch(deleteLink(id))
+        return 'Successfully deleted.'
+    }
+}
+
 const initialState = {};
 
 export default function (state = initialState, action) {
@@ -91,7 +100,7 @@ export default function (state = initialState, action) {
     switch (action.type) {
 
         case GET_LINK:
-            newState = { ...state }
+            newState = { ...action.payload }
             return newState
 
         case GET_ONE_LINK:

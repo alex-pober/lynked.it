@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import { updateOneLink, getOneLinks } from "../../store/link";
+import { updateOneLink, getOneLinks, deleteOneLink } from "../../store/link";
 import './EditLinks.css'
 
 const EditCommentForm = () => {
@@ -10,9 +10,8 @@ const EditCommentForm = () => {
     useEffect(() => {
         dispatch(getOneLinks(postId))
     }, [dispatch])
-
+    const user = useSelector(state => state.session?.user);
     const linkId = useSelector(state => state?.link?.link)
-    console.log(linkId)
     const history = useHistory();
     const [errors, setErrors] = useState([]);
     const [title, setTitle] = useState('');
@@ -31,7 +30,6 @@ const EditCommentForm = () => {
     const updateTitle = e => {
         setTitle(e.target.value)
     }
-
     const updateLink = e => {
         setLink(e.target.value)
     }
@@ -57,6 +55,11 @@ const EditCommentForm = () => {
         //     // sendDataToParent(!editPopUp)
         // }
     }
+    console.log(user.username)
+    const handleDelete = (postId) => {
+        dispatch(deleteOneLink(postId))
+        history.push(`/${user.username}/admin`)
+      }
 
     return (
         <>
@@ -87,6 +90,7 @@ const EditCommentForm = () => {
                         />
                     </div>
                     <button className="hidden-submit" type='submit'>Update</button>
+                    <button onClick={() => handleDelete(postId)}>Delete</button>
                 </div>
             </form>
         {/* )} */}

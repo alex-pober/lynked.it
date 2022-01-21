@@ -9,11 +9,11 @@ const Links = () => {
     const [link, setLink] = useState();
     const [title, setTitle] = useState();
     const user = useSelector(state => state.session?.user);
-    const allLinks = useSelector(state => state?.link)
+    const allLinks = useSelector(state => state?.link?.links)
     const history = useHistory();
     const dispatch = useDispatch();
     const { userId }  = useParams();
-
+    console.log(allLinks)
     useEffect(() => {
         dispatch(getAllLinks(user?.id))
     }, [dispatch])
@@ -39,7 +39,7 @@ const Links = () => {
   return (
     <>
         <div className="links">
-            {allLinks.link?.links.map(link =>
+            {allLinks?.map(link =>
                 <a href={`${link.link}`}>{link.title}</a>
             )}
         </div >
