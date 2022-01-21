@@ -14,7 +14,7 @@ const SignUpForm = () => {
   const [profilePicImg, setprofilePicImg] = useState('');
   const [bannerPicImg, setbannerPicImg] = useState('');
   const [phoneNumber, setphoneNumber] = useState('');
-  const [menu, setmenu] = useState(false);
+  const [menu, setmenu] = useState();
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
@@ -155,7 +155,7 @@ const SignUpForm = () => {
       <div>
         <label>Phone Number</label>
         <input
-          type='text'
+          type='integer'
           name='phoneNumber'
           onChange={updatephoneNumber}
           value={phoneNumber}
@@ -167,7 +167,7 @@ const SignUpForm = () => {
           type='checkbox'
           name='menu'
           onChange={updatemenu}
-          value={menu}
+          defaultChecked={false}
         ></input>
       </div>
       <button type='submit'>Sign Up</button>

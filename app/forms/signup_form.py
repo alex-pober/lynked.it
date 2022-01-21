@@ -30,4 +30,4 @@ class SignUpForm(FlaskForm):
     profilePicImg = StringField('profilePicImg')
     bannerPicImg = StringField('bannerPicImg')
     phoneNumber = IntegerField('phoneNumber')
-    menu = BooleanField("menu)")
+    menu = BooleanField('menu')

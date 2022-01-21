@@ -92,7 +92,7 @@ export const signUp = (id, username, email, password, name, bio, profilePicImg, 
       profilePicImg,
       bannerPicImg,
       phoneNumber,
-      menu
+      menu,
     }),
   });
   console.log(response)
