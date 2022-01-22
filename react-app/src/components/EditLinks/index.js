@@ -16,11 +16,15 @@ const EditCommentForm = () => {
     const [errors, setErrors] = useState([]);
     const [title, setTitle] = useState('');
     const [link, setLink] = useState('');
-    // const [editPopUp, setEditPopUp] = useState(editState)
+    const [editPopUp, setEditPopUp] = useState(false)
     const userId = useSelector(state => {
         if (state.session.user) {
             return state.session.user.id
         }})
+ 
+    if (!linkId?.user_id == user?.id) {
+        history.push(`/${user.username}/admin`)
+    }
 
     useEffect(() => {
         setTitle(linkId?.title)
@@ -45,17 +49,15 @@ const EditCommentForm = () => {
             link,
         }
 
-        await dispatch(updateOneLink(editLink))
+        let submitted = await dispatch(updateOneLink(editLink))
         // .catch(async res => {
         //     const data = await res.json();
         //     if (data && data.errors) setErrors(data.errors);
         // })
-        // if (submitted) {
-        //     // setEditPopUp(!editPopUp)
-        //     // sendDataToParent(!editPopUp)
-        // }
+        if (submitted) {
+
+        }
     }
-    console.log(user.username)
     const handleDelete = (postId) => {
         dispatch(deleteOneLink(postId))
         history.push(`/${user.username}/admin`)
@@ -63,7 +65,6 @@ const EditCommentForm = () => {
 
     return (
         <>
-        {/* {editPopUp && ( */}
             <form className='edit-your-comment' onSubmit={onEdit}>
                 <div>
                     <div>
@@ -93,7 +94,6 @@ const EditCommentForm = () => {
                     <button onClick={() => handleDelete(postId)}>Delete</button>
                 </div>
             </form>
-        {/* )} */}
         </>
     )
 }

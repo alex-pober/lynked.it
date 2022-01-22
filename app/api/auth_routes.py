@@ -93,6 +93,7 @@ def edit_profile():
             user.username = form.data['username']
         user.name = form.data['name']
         user.bio = form.data['bio']
+        user.email = form.data['email']
         user.profilePicImg = form.data['profilePicImg']
         user.bannerPicImg = form.data['bannerPicImg']
         user.phoneNumber = form.data['phoneNumber']

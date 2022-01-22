@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { NavLink, useHistory, useParams, Redirect } from "react-router-dom";
 import { addOneLink, getAllLinks } from '../../store/link';
+import EditCommentForm from '../EditLinks/index';
 import './linksCSS.css'
 
 const Links = () => {
@@ -12,8 +13,6 @@ const Links = () => {
     const allLinks = useSelector(state => state?.link?.links)
     const history = useHistory();
     const dispatch = useDispatch();
-    const { userId }  = useParams();
-    console.log(allLinks)
     useEffect(() => {
         dispatch(getAllLinks(user?.id))
     }, [dispatch])
@@ -34,13 +33,16 @@ const Links = () => {
         }
         dispatch(addOneLink(newLink))
         dispatch(getAllLinks(user?.id))
+        history.go(`/${user.username}/admin`)
     }
 
   return (
     <>
         <div className="links">
             {allLinks?.map(link =>
-                <a href={`${link.link}`}>{link.title}</a>
+                <div>
+                    <a href={`${link.link}`}>{link.title}</a>
+                </div>
             )}
         </div >
         <form className="links" onSubmit={submit}>
