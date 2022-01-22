@@ -36,14 +36,16 @@ const Links = () => {
         history.go(`/${user.username}/admin`)
     }
 
-  return (
-    <>
+    return (
+        <>
         <div className="links">
-            {allLinks?.map(link =>
-                <div>
-                    <a href={`${link.link}`}>{link.title}</a>
-                </div>
-            )}
+            {allLinks?.map(link => (
+            <>
+                <a href={`${link.link}`}>{link.title}</a>
+                <EditCommentForm maplink={link.link} maptitle={link.title} linkobj={link}/>
+                {console.log(link.title)}
+            </>
+            ))}
         </div >
         <form className="links" onSubmit={submit}>
             <div className="errors">

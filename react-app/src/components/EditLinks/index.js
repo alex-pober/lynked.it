@@ -4,31 +4,30 @@ import { useSelector, useDispatch } from 'react-redux';
 import { updateOneLink, getOneLinks, deleteOneLink } from "../../store/link";
 import './EditLinks.css'
 
-const EditCommentForm = () => {
+const EditCommentForm = ({maplink, maptitle, linkobj}) => {
     const dispatch = useDispatch();
-    const postId = useParams().id
-    useEffect(() => {
-        dispatch(getOneLinks(postId))
-    }, [dispatch])
+    const postId = linkobj.id
+    // useEffect(() => {
+    //     dispatch(getOneLinks(postId))
+    // }, [dispatch])
     const user = useSelector(state => state.session?.user);
     const linkId = useSelector(state => state?.link?.link)
     const history = useHistory();
     const [errors, setErrors] = useState([]);
     const [title, setTitle] = useState('');
     const [link, setLink] = useState('');
-    const [editPopUp, setEditPopUp] = useState(false)
     const userId = useSelector(state => {
         if (state.session.user) {
             return state.session.user.id
         }})
- 
+
     if (!linkId?.user_id == user?.id) {
         history.push(`/${user.username}/admin`)
     }
 
     useEffect(() => {
-        setTitle(linkId?.title)
-        setLink(linkId?.link)
+        setTitle(maptitle)
+        setLink(maplink)
     }, [linkId])
 
     const updateTitle = e => {
@@ -43,7 +42,7 @@ const EditCommentForm = () => {
         setErrors([]);
 
         const editLink = {
-            id: +linkId.id,
+            id: +linkobj.id,
             user_id: userId,
             title,
             link,
@@ -55,12 +54,12 @@ const EditCommentForm = () => {
         //     if (data && data.errors) setErrors(data.errors);
         // })
         if (submitted) {
-
+            history.go(`/${user.username}/admin`)
         }
     }
     const handleDelete = (postId) => {
         dispatch(deleteOneLink(postId))
-        history.push(`/${user.username}/admin`)
+        history.go(`/${user.username}/admin`)
       }
 
     return (
