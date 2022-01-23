@@ -17,6 +17,7 @@ def get_link(id):
 
 #GET /api/links/:userId/edit
 @link_routes.route('/<id>/edit')
+@login_required
 def get_one_link(id):
     links = Link.query.get(id)
     return links.to_dict()
@@ -60,4 +61,4 @@ def delete_link(id):
     link = Link.query.get(id)
     db.session.delete(link)
     db.session.commit()
-    return "Post deleted"
+    return "Link deleted"

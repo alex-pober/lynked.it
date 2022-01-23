@@ -37,15 +37,15 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
-        <Route path='/:usernameParams/account-info' exact={true}>
+        <ProtectedRoute path='/:usernameParams/account-info' exact={true}>
           <AccountInfo />
-        </Route>
-        <Route path='/:usernameParams/admin' exact={true}>
+        </ProtectedRoute>
+        <ProtectedRoute path='/:usernameParams/admin' exact={true}>
           <Links />
-        </Route>
-        <Route path='/links/:id/edit' exact={true}>
+        </ProtectedRoute>
+        <ProtectedRoute path='/links/:id/edit' exact={true}>
           <EditLinkForm />
-        </Route>
+        </ProtectedRoute>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>
