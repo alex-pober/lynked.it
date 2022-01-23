@@ -167,6 +167,7 @@ const SignUpForm = () => {
           type='checkbox'
           name='menu'
           onChange={updatemenu}
+          value={menu}
           defaultChecked={false}
         ></input>
       </div>

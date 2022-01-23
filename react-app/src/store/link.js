@@ -7,12 +7,12 @@ const DELETE_LINK = 'links/DELETE_LINK'
 const getLink = link => ({
     type: GET_LINK,
     payload: link
-});
+})
 
 const getOneLink = link => ({
     type: GET_ONE_LINK,
     payload: link
-});
+})
 
 const addLink = singleLink => ({
     type: ADD_LINK,

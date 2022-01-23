@@ -9,6 +9,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import AccountInfo from './components/auth/AccountInfo';
 import Links from './components/links/index'
+import Menu from './components/menu/index'
 import EditLinkForm from './components/EditLinks/index'
 import { authenticate } from './store/session';
 
@@ -42,6 +43,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/:usernameParams/admin' exact={true}>
           <Links />
+        </ProtectedRoute>
+        <ProtectedRoute path='/:usernameParams/admin/menu' exact={true}>
+          <Menu />
         </ProtectedRoute>
         <ProtectedRoute path='/links/:id/edit' exact={true}>
           <EditLinkForm />

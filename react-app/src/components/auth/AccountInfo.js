@@ -51,8 +51,6 @@ const AccountInfo = () => {
     if (errors.length > 0) return setErrors(errors);
 
     const updated = await dispatch(EditProfile(user_id, username, email, name, bio, profilePicImg, bannerPicImg, phoneNumber, menu));
-    console.log(updated[0].includes)
-    console.log(updated[0])
     if (updated[0].includes('Username is already in use')) {
       setErrors(updated)
       console.log(errors)
