@@ -1,3 +1,5 @@
+import ProtectedRoute from "../components/auth/ProtectedRoute"
+
 const GET_LINK = 'links/GET_LINK'
 const GET_ONE_LINK = 'links/GET_ONE_LINK'
 const ADD_LINK = 'links/ADD_LINK'

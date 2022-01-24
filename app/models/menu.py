@@ -16,5 +16,6 @@ class Menu(db.Model):
         return {
             'id': self.id,
             'user_id': self.user_id,
-            'title': self.title
+            'title': self.title,
+            'link': self.link
         }

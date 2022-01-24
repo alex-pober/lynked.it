@@ -10,8 +10,9 @@ menu_routes = Blueprint('menus', __name__)
 @menu_routes.route('/<id>')
 def get_menu(id):
     menus = Menu.query.filter(Menu.user_id == id).all()
-    allMenus = [menus.to_dict() for menu in menus]
-    return {'menus': allMenus}
+    allMenus = [menu.to_dict() for menu in menus]
+    print(allMenus)
+    return {"menus": allMenus}
 
 #POST /api/menu
 @menu_routes.route('/', methods=["POST"])
