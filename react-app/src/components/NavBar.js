@@ -15,9 +15,12 @@ const NavBar = () => {
   // console.log(username.username)
   return (
     <nav>
-      <NavLink to='/' exact={true} activeClassName='active'>
+      {/* <NavLink to='/' exact={true} activeClassName='active'>
         Home
-      </NavLink>
+      </NavLink> */}
+      {/* <NavLink to='/users' exact={true} activeClassName='active'>
+        Users
+      </NavLink> */}
       {!user?.id && (
       <>
         <NavLink to='/login' exact={true} activeClassName='active'>
@@ -29,9 +32,17 @@ const NavBar = () => {
         </NavLink>
       </>
        )}
-      <NavLink to='/users' exact={true} activeClassName='active'>
-        Users
+      {user?.id && (
+      <NavLink to={`/${user.username}/admin/`} exact={true}>
+        Manage Links
       </NavLink>
+      )}
+
+      {user?.menu == true && (
+      <NavLink to={`/${user.username}/admin/menu`} exact={true}>
+        Manage Menus
+      </NavLink>
+      )}
 
       {user?.id && (
       <NavLink to={`/${user.username}/account-info`} exact={true}>

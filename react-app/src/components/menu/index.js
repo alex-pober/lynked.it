@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory, useParams, Redirect } from "react-router-dom";
 import { addOneMenu, getAllMenu } from '../../store/menu';
-import EditCommentForm from '../EditLinks/index';
+import EditMenuForm from '../EditMenus/index';
 import './menu.css'
 
 const Menu = () => {
@@ -41,6 +41,7 @@ const Menu = () => {
             {allMenus?.map(menu => (
             <>
                 <h2>{menu.title}</h2>
+                <EditMenuForm menuObj={allMenus} maplink={menu.link} maptitle={menu.title}/>
                 <embed className='pdf' src={menu.link+"#toolbar=0&navpanes=0&scrollbar=0"} display="flex"></embed>
             </>
             ))}
