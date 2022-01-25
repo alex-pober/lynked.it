@@ -47,18 +47,15 @@ const EditMenuForm = ({maplink, maptitle, menuObj}) => {
         }
 
         let submitted = await dispatch(updateOneMenu(editLink))
-        // .catch(async res => {
-        //     const data = await res.json();
-        //     if (data && data.errors) setErrors(data.errors);
-        // })
+        .catch(async res => {
+            const data = await res.json();
+            if (data && data.errors) setErrors(data.errors);
+        })
         if (submitted) {
-            console.log(editLink)
-            // history.go(`/${user.username}/admin`)
         }
     }
     const handleDelete = (postId) => {
         dispatch(deleteOneMenu(postId))
-        history.go(`/${user.username}/admin`)
       }
 
     return (

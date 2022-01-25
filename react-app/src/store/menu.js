@@ -94,7 +94,7 @@ export default function (state = initialState, action) {
             return {...state, ...newMenu}
 
         case ADD_MENU:
-            return {...state, [action.payload.menus]: action.payload }
+            return {...state, [action.payload.id]: action.payload }
 
         case UPDATE_MENU:
             return {...state, [action.payload.menu.id]: action.payload.menu}

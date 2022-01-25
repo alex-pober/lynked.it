@@ -114,7 +114,7 @@ export default function (state = initialState, action) {
         case ADD_LINK:
             // newState = {...newState, [action.payload.id]: action.payload }
             // return newState
-            return {...state, [action.payload.link.id]: action.payload }
+            return {...state, [action.payload.id]: action.payload }
 
         case UPDATE_LINK:
             return {...state, [action.payload.link.id]: action.payload.link}
