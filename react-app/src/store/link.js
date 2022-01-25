@@ -1,4 +1,5 @@
 import ProtectedRoute from "../components/auth/ProtectedRoute"
+import _ from 'lodash';
 
 const GET_LINK = 'links/GET_LINK'
 const GET_ONE_LINK = 'links/GET_ONE_LINK'
@@ -16,9 +17,9 @@ const getOneLink = link => ({
     payload: link
 })
 
-const addLink = singleLink => ({
+const addLink = link => ({
     type: ADD_LINK,
-    payload: singleLink
+    payload: link
 })
 
 const updateLink = link => ({
@@ -58,17 +59,17 @@ export const getAllLinks = (id) => async dispatch => {
     }
 }
 
-export const getOneLinks = (id) => async dispatch => {
-    const response = await fetch(`/api/links/${id}/edit`)
-    if (response.ok) {
-        const data = await response.json();
-        if (data.errors) {
-            return;
-        }
-        dispatch(getOneLink(data));
-        return data
-    }
-}
+// export const getOneLinks = (id) => async dispatch => {
+//     const response = await fetch(`/api/links/${id}/edit`)
+//     if (response.ok) {
+//         const data = await response.json();
+//         if (data.errors) {
+//             return;
+//         }
+//         dispatch(getOneLink(data));
+//         return data
+//     }
+// }
 
 export const updateOneLink = link => async dispatch => {
     const response = await fetch(`/api/links/${link.id}`, {
@@ -80,7 +81,7 @@ export const updateOneLink = link => async dispatch => {
     })
     if (response.ok) {
         const data = await response.json();
-        dispatch(addLink(data))
+        dispatch(updateLink(data))
         return data
     }
 }
@@ -102,25 +103,27 @@ export default function (state = initialState, action) {
     switch (action.type) {
 
         case GET_LINK:
-            newState = { ...action.payload }
-            return newState
+            // newState = { ...action.payload }
+            // return newState
+            const newLink = _.mapKeys(action.payload.links, 'id')
+            return {...state, ...newLink}
 
-        case GET_ONE_LINK:
-            return {link: action.payload}
+        // case GET_ONE_LINK:
+        //     return {link: action.payload}
 
         case ADD_LINK:
-            newState = {...newState, [action.payload.id]: action.payload }
-            return newState
+            // newState = {...newState, [action.payload.id]: action.payload }
+            // return newState
+            return {...state, [action.payload.link.id]: action.payload }
 
-        // case UPDATE_LINK:
-        //     newState = {link: action.payload}
-        //     return newState
+        case UPDATE_LINK:
+            return {...state, [action.payload.link.id]: action.payload.link}
 
         case DELETE_LINK:
-            newState = { ...state }
-            delete newState[action.payload]
-            return newState
-
+            // newState = { ...state }
+            // delete newState[action.payload]
+            // return newState
+            return _.omit(state, action.payload)
 
 
 

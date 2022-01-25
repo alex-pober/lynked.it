@@ -6,7 +6,7 @@ import './EditLinks.css'
 
 const EditCommentForm = ({maplink, maptitle, linkobj}) => {
     const dispatch = useDispatch();
-    const postId = linkobj.id
+    const postId = linkobj
     // useEffect(() => {
     //     dispatch(getOneLinks(postId))
     // }, [dispatch])
@@ -42,7 +42,7 @@ const EditCommentForm = ({maplink, maptitle, linkobj}) => {
         setErrors([]);
 
         const editLink = {
-            id: +linkobj.id,
+            id: +linkobj,
             user_id: userId,
             title,
             link,
@@ -54,12 +54,13 @@ const EditCommentForm = ({maplink, maptitle, linkobj}) => {
         //     if (data && data.errors) setErrors(data.errors);
         // })
         if (submitted) {
-            history.go(`/${user.username}/admin`)
+            console.log(editLink)
+            // history.go(`/${user.username}/admin`)
         }
     }
     const handleDelete = (postId) => {
         dispatch(deleteOneLink(postId))
-        history.go(`/${user.username}/admin`)
+        // history.go(`/${user.username}/admin`)
       }
 
     return (

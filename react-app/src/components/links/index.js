@@ -6,16 +6,18 @@ import EditCommentForm from '../EditLinks/index';
 import './linksCSS.css'
 
 const Links = () => {
-    const [errors, setErrors] = useState([]);
-    const [link, setLink] = useState();
-    const [title, setTitle] = useState();
-    const user = useSelector(state => state.session?.user);
-    const allLinks = useSelector(state => state?.link?.links)
-    const history = useHistory();
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getAllLinks(user?.id))
     }, [dispatch])
+    const [errors, setErrors] = useState([]);
+    const [link, setLink] = useState();
+    const [title, setTitle] = useState();
+    const user = useSelector(state => state.session?.user);
+    const allLinks = useSelector(state => state?.link)
+    let linkValues = Object.values(allLinks)
+    console.log(linkValues)
+    const history = useHistory();
 
     const updateTitle = e => {
         setTitle(e.target.value)
@@ -32,17 +34,17 @@ const Links = () => {
             link,
         }
         dispatch(addOneLink(newLink))
-        dispatch(getAllLinks(user?.id))
-        history.go(`/${user.username}/admin`)
+        // dispatch(getAllLinks(user?.id))
+        // history.go(`/${user.username}/admin`)
     }
 
     return (
         <>
         <div className="links">
-            {allLinks?.map(link => (
+            {linkValues?.map(link => (
             <>
                 <a href={`${link.link}`}>{link.title}</a>
-                <EditCommentForm maplink={link.link} maptitle={link.title} linkobj={link}/>
+                <EditCommentForm maplink={link.link} maptitle={link.title} linkobj={link.id}/>
                 {console.log(link.title)}
             </>
             ))}
@@ -60,6 +62,7 @@ const Links = () => {
                     placeholder="Title for Link"
                     value={title}
                     onChange={updateTitle}
+                    
                 />
             </div>
             <div>
