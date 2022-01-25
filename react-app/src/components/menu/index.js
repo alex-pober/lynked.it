@@ -3,20 +3,21 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useHistory, useParams, Redirect } from "react-router-dom";
 import { addOneMenu, getAllMenu } from '../../store/menu';
 import EditMenuForm from '../EditMenus/index';
+import _ from 'lodash';
 import './menu.css'
 
 const Menu = () => {
-    const [errors, setErrors] = useState([]);
-    const [link, setLink] = useState();
-    const [title, setTitle] = useState();
-    const user = useSelector(state => state.session?.user);
-    const allMenus = useSelector(state => state?.menu.menus)
-    console.log(allMenus)
-    const history = useHistory();
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getAllMenu(user?.id))
     }, [dispatch])
+    const [errors, setErrors] = useState([]);
+    const [link, setLink] = useState();
+    const [title, setTitle] = useState();
+    const user = useSelector(state => state?.session?.user);
+    const allMenus = useSelector(state => state?.menu)
+    let menuValues = Object.values(allMenus)
+    const history = useHistory();
 
     const updateTitle = e => {
         setTitle(e.target.value)
@@ -38,11 +39,11 @@ const Menu = () => {
     return (
         <>
         <div className="links">
-            {allMenus?.map(menu => (
-            <>
-                <h2>{menu.title}</h2>
-                <EditMenuForm menuObj={allMenus} maplink={menu.link} maptitle={menu.title}/>
-                <embed className='pdf' src={menu.link+"#toolbar=0&navpanes=0&scrollbar=0"} display="flex"></embed>
+            {menuValues.map(menu => (
+                <>
+                <h2>{menu?.title}</h2>
+                <EditMenuForm menuObj={menu.id} maplink={menu?.link} maptitle={menu?.title}/>
+                <embed className='pdf' src={menu?.link+"#toolbar=0&navpanes=0&scrollbar=0"} display="flex"></embed>
             </>
             ))}
         </div >

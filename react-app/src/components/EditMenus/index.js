@@ -2,16 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { updateOneMenu, getOneLinks, deleteOneMenu } from "../../store/menu";
+import _ from 'lodash';
 // import './EditLinks.css'
 
 const EditMenuForm = ({maplink, maptitle, menuObj}) => {
     const dispatch = useDispatch();
-    const menuId = menuObj[0].id
-    console.log(menuObj[0])
-    console.log(menuId)
-    // useEffect(() => {
-    //     dispatch(getOneLinks(postId))
-    // }, [dispatch])
+    const menuId = menuObj
     const user = useSelector(state => state.session?.user);
     const linkId = useSelector(state => state?.link?.link)
     const history = useHistory();
@@ -56,7 +52,8 @@ const EditMenuForm = ({maplink, maptitle, menuObj}) => {
         //     if (data && data.errors) setErrors(data.errors);
         // })
         if (submitted) {
-            history.go(`/${user.username}/admin`)
+            console.log(editLink)
+            // history.go(`/${user.username}/admin`)
         }
     }
     const handleDelete = (postId) => {

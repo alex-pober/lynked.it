@@ -1,3 +1,6 @@
+import { __RouterContext } from "react-router"
+import _ from 'lodash';
+
 const GET_MENU = 'menus/GET_MENU'
 const ADD_MENU = 'menus/ADD_MENU'
 const UPDATE_MENU = 'menus/UPDATE_MENU'
@@ -83,21 +86,24 @@ export default function (state = initialState, action) {
     switch (action.type) {
 
         case GET_MENU:
-            newState = { ...action.payload }
-            return newState
+            console.log(action.payload.menus[0].id)
+            // newState = action.payload
+            // return newState
+            // return {...state, [action.payload]: action.payload}
+            const newMenu = _.mapKeys(action.payload.menus, 'id')
+            return {...state, ...newMenu}
 
         case ADD_MENU:
-            newState = {...newState, [action.payload.id]: action.payload }
-            return newState
+            return {...state, [action.payload.menus]: action.payload }
 
         case UPDATE_MENU:
-            newState = {...newState, [action.payload.id]: action.payload }
-            return newState
+            return {...state, [action.payload.menu.id]: action.payload.menu}
 
         case DELETE_MENU:
-            newState = { ...state }
-            delete newState[action.payload]
-            return newState
+            // newState = { ...state }
+            // delete newState[action.payload.id]
+            // return newState
+            return _.omit(state, action.payload)
 
         default:
             return state;
