@@ -9,14 +9,14 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
-  console.log(user)
+
   const onLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
       setErrors(data);
     }
-    window.location.reload(false);
+    // window.location.reload(false);
   };
 
   const updateEmail = (e) => {

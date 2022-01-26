@@ -26,8 +26,17 @@
 }
 
 .buttons button {
-    color:white;
     border: none;
     padding: 8px 16px;
-    border-radius: 8px;
+    margin-top: -15px;
+}
+
+.delete {
+    background-color: rgb(255, 69, 58);
+    color: white;
+}
+
+.update {
+    background-color: rgb(10, 132, 255);
+    color: white;
 }

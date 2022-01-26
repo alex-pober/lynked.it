@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { NavLink, useHistory, useParams, Redirect } from "react-router-dom";
 import { deleteAccount, EditProfile } from '../../store/session';
 import { logout } from '../../store/session';
+import NavBar from "../NavBar"
 
 const AccountInfo = () => {
   const [errors, setErrors] = useState([]);
@@ -101,6 +102,7 @@ const AccountInfo = () => {
 
   return (
     <>
+    <NavBar />
       <form onSubmit={onEditProfile}>
         <div>
           {errors.map((error, ind) => (

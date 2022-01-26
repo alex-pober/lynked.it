@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory, useParams, Redirect } from "react-router-dom";
 import { addOneMenu, getAllMenu } from '../../store/menu';
+import NavBar from "../NavBar"
 import EditMenuForm from '../EditMenus/index';
 import _ from 'lodash';
 import './menu.css'
@@ -37,9 +38,10 @@ const Menu = () => {
         setLink('')
         setTitle('')
     }
-    
+
     return (
-        <>
+    <>
+    <NavBar />
         <div className="links">
             {menuValues.map(menu => (
                 <>

@@ -24,7 +24,7 @@ const getId = id => ({
   payload: id
 })
 
-const initialState = { user: null };
+const initialState = {user: null};
 
 export const authenticate = () => async (dispatch) => {
   const response = await fetch('/api/auth/', {
@@ -176,12 +176,14 @@ export const getUserId = username => async dispatch => {
   }
 }
 
+
 export default function reducer(state = initialState, action) {
   let newState;
   switch (action.type) {
     case GET_USER_ID:
       return  _.mapKeys(action.payload.user, 'id')
     case SET_USER:
+      newState = {}
       return { user: action.payload }
     case REMOVE_USER:
       return { user: null }

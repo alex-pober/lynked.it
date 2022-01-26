@@ -40,7 +40,6 @@ const EditLinkForm = ({maplink, maptitle, linkobj}) => {
 
     const onEdit = async e => {
         e.preventDefault()
-        setErrors([]);
 
         const editLink = {
             id: +linkobj,
@@ -49,17 +48,11 @@ const EditLinkForm = ({maplink, maptitle, linkobj}) => {
             link,
         }
 
-        let submitted = await dispatch(updateOneLink(editLink))
-        .catch(async res => {
-            const data = await res.json();
-            if (data && data.errors) setErrors(data.errors);
-        })
-        if (submitted) {
-
-        }
+        dispatch(updateOneLink(editLink))
     }
     const handleDelete = (postId) => {
         dispatch(deleteOneLink(postId))
+        history.go(`/${user.username}/admin`)
       }
 
     return (
@@ -93,8 +86,8 @@ const EditLinkForm = ({maplink, maptitle, linkobj}) => {
                     </div>
                 </div>
                 <div className='buttons'>
-                    <button className="hidden-submit" type='submit'>Update</button>
-                    <button onClick={() => handleDelete(postId)}>Delete</button>
+                    <button className="update" type='submit'>Update</button>
+                    <button className="delete"onClick={() => handleDelete(postId)}>Delete</button>
                 </div>
             </form>
         </>
