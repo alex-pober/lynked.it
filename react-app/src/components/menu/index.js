@@ -37,7 +37,7 @@ const Menu = () => {
         setLink('')
         setTitle('')
     }
-
+    
     return (
         <>
         <div className="links">

@@ -7,6 +7,7 @@ import './EditLinks.css'
 const EditLinkForm = ({maplink, maptitle, linkobj}) => {
     const dispatch = useDispatch();
     const postId = linkobj
+    console.log(postId)
     // useEffect(() => {
     //     dispatch(getOneLinks(postId))
     // }, [dispatch])
@@ -49,24 +50,22 @@ const EditLinkForm = ({maplink, maptitle, linkobj}) => {
         }
 
         let submitted = await dispatch(updateOneLink(editLink))
-        // .catch(async res => {
-        //     const data = await res.json();
-        //     if (data && data.errors) setErrors(data.errors);
-        // })
+        .catch(async res => {
+            const data = await res.json();
+            if (data && data.errors) setErrors(data.errors);
+        })
         if (submitted) {
-            console.log(editLink)
-            // history.go(`/${user.username}/admin`)
+
         }
     }
     const handleDelete = (postId) => {
         dispatch(deleteOneLink(postId))
-        // history.go(`/${user.username}/admin`)
       }
 
     return (
         <>
-            <form className='edit-your-comment' onSubmit={onEdit}>
-                <div>
+            <form  onSubmit={onEdit}>
+                <div className='edit-link-form'>
                     <div>
                         {errors.map((error, ind) => (
                             <div key={ind}>{error}</div>
@@ -92,6 +91,8 @@ const EditLinkForm = ({maplink, maptitle, linkobj}) => {
                             required={true}
                         />
                     </div>
+                </div>
+                <div className='buttons'>
                     <button className="hidden-submit" type='submit'>Update</button>
                     <button onClick={() => handleDelete(postId)}>Delete</button>
                 </div>

@@ -39,44 +39,59 @@ const Links = () => {
 
 
     return (
-        <>
-        <div className="links">
-            {linkValues?.map(link => (
-            <>
-                <a href={`${link.link}`}>{link.title}</a>
-                <EditLinkForm maplink={link.link} maptitle={link.title} linkobj={link.id}/>
-                {console.log(link.title)}
-            </>
-            ))}
-        </div >
-        <form className="links" onSubmit={submit}>
-            <div className="errors">
-                {errors.map((error, ind) => (
-                    <div key={ind}>{error}</div>
+    <>
+        <div className="links-and-iphone">
+            <div className="links">
+                {linkValues?.map(link => (
+                <>
+                    <a href={`${link.link}`}>{link.title}</a>
+                    <EditLinkForm maplink={link.link} maptitle={link.title} linkobj={link.id}/>
+                    {console.log(link.title)}
+                </>
                 ))}
+            </div >
+            <div className="iphone-mockup">
+                <img src="https://i.imgur.com/rnRyfHH.png"/>
+                <div className="iphone-mockup-links">
+                    <img className="mock-profile-pic"src={user.profilePicImg}></img>
+                    <span className="mock-name">{user.name}</span>
+                    <span className="mock-bio">{user.bio}</span>
+                    {linkValues?.map(link => (
+                    <>
+                        <a href={`${link?.link}`}>{link?.title}</a>
+                    </>
+                    ))}
+                </div >
             </div>
-            <div>
-                <input
-                    name='title'
-                    type='text'
-                    placeholder="Title for Link"
-                    value={title}
-                    onChange={updateTitle}
-                    required={true}
-                />
-            </div>
-            <div>
-                <input
-                    name='link'
-                    type='text'
-                    placeholder="Link"
-                    value={link}
-                    onChange={updateLink}
-                    required={true}
-                />
-            </div>
-            <button type='submit'>Create New Link</button>
-        </form>
+            <form className="submit-form"onSubmit={submit}>
+                <div className="errors">
+                    {errors.map((error, ind) => (
+                        <div key={ind}>{error}</div>
+                    ))}
+                </div>
+                <div>
+                    <input
+                        name='title'
+                        type='text'
+                        placeholder="Title for Link"
+                        value={title}
+                        onChange={updateTitle}
+                        required={true}
+                    />
+                </div>
+                <div>
+                    <input
+                        name='link'
+                        type='text'
+                        placeholder="Link"
+                        value={link}
+                        onChange={updateLink}
+                        required={true}
+                    />
+                </div>
+                <button className="create-link" type='submit'>Create New Link</button>
+            </form>
+        </div>
     </>
   );
 }
