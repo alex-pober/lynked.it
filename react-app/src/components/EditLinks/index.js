@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { updateOneLink, getOneLinks, deleteOneLink } from "../../store/link";
 import './EditLinks.css'
 
-const EditCommentForm = ({maplink, maptitle, linkobj}) => {
+const EditLinkForm = ({maplink, maptitle, linkobj}) => {
     const dispatch = useDispatch();
     const postId = linkobj
     // useEffect(() => {
@@ -79,6 +79,7 @@ const EditCommentForm = ({maplink, maptitle, linkobj}) => {
                             placeholder="Title for Link"
                             value={title}
                             onChange={updateTitle}
+                            required={true}
                         />
                     </div>
                     <div>
@@ -88,6 +89,7 @@ const EditCommentForm = ({maplink, maptitle, linkobj}) => {
                             placeholder="Link"
                             value={link}
                             onChange={updateLink}
+                            required={true}
                         />
                     </div>
                     <button className="hidden-submit" type='submit'>Update</button>
@@ -98,4 +100,4 @@ const EditCommentForm = ({maplink, maptitle, linkobj}) => {
     )
 }
 
-export default EditCommentForm
+export default EditLinkForm

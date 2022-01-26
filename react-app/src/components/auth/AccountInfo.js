@@ -114,6 +114,7 @@ const AccountInfo = () => {
             name='username'
             onChange={updateUsername}
             value={username}
+            required={true}
           ></input>
         </div>
         <div>
@@ -123,6 +124,7 @@ const AccountInfo = () => {
             name='email'
             onChange={updateEmail}
             value={email}
+            required={true}
           ></input>
         </div>
         <div>
@@ -132,6 +134,7 @@ const AccountInfo = () => {
             name='name'
             onChange={updateName}
             value={name}
+            required={true}
           ></input>
         </div>
         <div>

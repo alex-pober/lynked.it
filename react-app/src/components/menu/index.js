@@ -34,6 +34,8 @@ const Menu = () => {
             link,
         }
         dispatch(addOneMenu(newMenu))
+        setLink('')
+        setTitle('')
     }
 
     return (
@@ -60,6 +62,7 @@ const Menu = () => {
                     placeholder="Title for Link"
                     value={title}
                     onChange={updateTitle}
+                    required={true}
                 />
             </div>
             <div>
@@ -69,6 +72,7 @@ const Menu = () => {
                     placeholder="Link"
                     value={link}
                     onChange={updateLink}
+                    required={true}
                 />
             </div>
             <button type='submit'>Create New Link</button>

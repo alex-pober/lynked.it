@@ -1,7 +1,9 @@
-// constants
+import _ from 'lodash';
+
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
 const DELETE_USER = 'session/DELETE_USER';
+const GET_USER_ID = 'session/GET_USER_ID';
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -14,6 +16,11 @@ const removeUser = () => ({
 
 const deleteUser = id => ({
   type: DELETE_USER,
+  payload: id
+})
+
+const getId = id => ({
+  type: GET_USER_ID,
   payload: id
 })
 
@@ -153,9 +160,27 @@ export const deleteAccount = id => async dispatch => {
   }
 }
 
+export const getUserId = username => async dispatch => {
+  const response = await fetch(`/api/auth/${username}`, {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+  if (response.ok) {
+    const data = await response.json();
+    if (data.errors) {
+      return;
+    }
+
+    dispatch(getId(data));
+  }
+}
+
 export default function reducer(state = initialState, action) {
   let newState;
   switch (action.type) {
+    case GET_USER_ID:
+      return  _.mapKeys(action.payload.user, 'id')
     case SET_USER:
       return { user: action.payload }
     case REMOVE_USER:

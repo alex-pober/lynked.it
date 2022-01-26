@@ -2,18 +2,12 @@ import ProtectedRoute from "../components/auth/ProtectedRoute"
 import _ from 'lodash';
 
 const GET_LINK = 'links/GET_LINK'
-const GET_ONE_LINK = 'links/GET_ONE_LINK'
 const ADD_LINK = 'links/ADD_LINK'
 const UPDATE_LINK = 'links/UPDATE_LINK'
 const DELETE_LINK = 'links/DELETE_LINK'
 
 const getLink = link => ({
     type: GET_LINK,
-    payload: link
-})
-
-const getOneLink = link => ({
-    type: GET_ONE_LINK,
     payload: link
 })
 
@@ -58,18 +52,6 @@ export const getAllLinks = (id) => async dispatch => {
         return data
     }
 }
-
-// export const getOneLinks = (id) => async dispatch => {
-//     const response = await fetch(`/api/links/${id}/edit`)
-//     if (response.ok) {
-//         const data = await response.json();
-//         if (data.errors) {
-//             return;
-//         }
-//         dispatch(getOneLink(data));
-//         return data
-//     }
-// }
 
 export const updateOneLink = link => async dispatch => {
     const response = await fetch(`/api/links/${link.id}`, {

@@ -74,6 +74,7 @@ const EditMenuForm = ({maplink, maptitle, menuObj}) => {
                             placeholder="Title for Link"
                             value={title}
                             onChange={updateTitle}
+                            required={true}
                         />
                     </div>
                     <div>
@@ -83,6 +84,7 @@ const EditMenuForm = ({maplink, maptitle, menuObj}) => {
                             placeholder="Link"
                             value={link}
                             onChange={updateLink}
+                            required={true}
                         />
                     </div>
                     <button className="hidden-submit" type='submit'>Update</button>

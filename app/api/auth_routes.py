@@ -105,11 +105,17 @@ def edit_profile():
 
 @auth_routes.route('/<id>', methods=["DELETE"])
 @login_required
-def delete_comment(id):
+def delete_profile(id):
     user = User.query.get(id)
     db.session.delete(user)
     db.session.commit()
     return "Post deleted"
+
+@auth_routes.route('/<id>', methods=['GET'])
+def get_user_id(id):
+    userId = User.query.filter(User.username == id).all()
+    return {'user': [user.to_dict() for user in userId]}
+
 
 
 @auth_routes.route('/unauthorized')

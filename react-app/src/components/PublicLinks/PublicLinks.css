@@ -1,0 +1,28 @@
+.public-links {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.public-links a {
+    border-radius: 5px;
+    display: flex;
+    text-decoration: none;
+    font-size: 22px;
+    border: 1px solid gray;
+    padding: 10px;
+    width: 250px;
+    justify-content: center;
+    align-items: stretch;
+    white-space: 5px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+}

@@ -11,6 +11,8 @@ import AccountInfo from './components/auth/AccountInfo';
 import Links from './components/links/index'
 import Menu from './components/menu/index'
 import EditLinkForm from './components/EditLinks/index'
+import PublicLinks from './components/PublicLinks';
+import SplashPage from './components/LandingPage'
 import { authenticate } from './store/session';
 
 function App() {
@@ -32,33 +34,36 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-        <Route path='/login' exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path='/sign-up' exact={true}>
-          <SignUpForm />
-        </Route>
-        <ProtectedRoute path='/:usernameParams/account-info' exact={true}>
-          <AccountInfo />
-        </ProtectedRoute>
-        <ProtectedRoute path='/:usernameParams/admin' exact={true}>
-          <Links />
-        </ProtectedRoute>
-        <ProtectedRoute path='/:usernameParams/admin/menu' exact={true}>
-          <Menu />
-        </ProtectedRoute>
-        <ProtectedRoute path='/links/:id/edit' exact={true}>
-          <EditLinkForm />
-        </ProtectedRoute>
-        <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
-        </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
-        </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
-        </ProtectedRoute>
+      <Route path='/' exact={true} >
+          <SplashPage />
+      </Route>
+      <Route path='/login' exact={true}>
+        <LoginForm />
+      </Route>
+      <Route path='/sign-up' exact={true}>
+        <SignUpForm />
+      </Route>
+      <ProtectedRoute path='/:usernameParams/account-info' exact={true}>
+        <AccountInfo />
+      </ProtectedRoute>
+      <ProtectedRoute path='/:usernameParams/admin' exact={true}>
+        <Links />
+      </ProtectedRoute>
+      <ProtectedRoute path='/:usernameParams/admin/menu' exact={true}>
+        <Menu />
+      </ProtectedRoute>
+      <ProtectedRoute path='/links/:id/edit' exact={true}>
+        <EditLinkForm />
+      </ProtectedRoute>
+      <ProtectedRoute path='/users' exact={true} >
+        <UsersList/>
+      </ProtectedRoute>
+      <ProtectedRoute path='/users/:userId' exact={true} >
+        <User />
+      </ProtectedRoute>
+      <Route path='/:usernameParams/' exact={true}>
+        <PublicLinks />
+      </Route>
       </Switch>
     </BrowserRouter>
   );

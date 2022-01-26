@@ -86,10 +86,6 @@ export default function (state = initialState, action) {
     switch (action.type) {
 
         case GET_MENU:
-            console.log(action.payload.menus[0].id)
-            // newState = action.payload
-            // return newState
-            // return {...state, [action.payload]: action.payload}
             const newMenu = _.mapKeys(action.payload.menus, 'id')
             return {...state, ...newMenu}
 
@@ -100,9 +96,6 @@ export default function (state = initialState, action) {
             return {...state, [action.payload.menu.id]: action.payload.menu}
 
         case DELETE_MENU:
-            // newState = { ...state }
-            // delete newState[action.payload.id]
-            // return newState
             return _.omit(state, action.payload)
 
         default:
