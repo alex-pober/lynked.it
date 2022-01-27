@@ -101,7 +101,6 @@ export const signUp = (username, email, password, name, bio, profilePicImg, bann
       menu,
     }),
   });
-  console.log(response)
   if (response.ok) {
     const data = await response.json();
     dispatch(setUser(data))
@@ -137,7 +136,6 @@ export const EditProfile = (id, username, email, name, bio, profilePicImg, banne
 
   if (response.ok) {
     const data = await response.json();
-    console.log(data)
     dispatch(setUser(data))
     return 'Successfully updated.'
   } else if (response.status < 500) {

@@ -1,0 +1,39 @@
+.edit-menu {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-end;
+}
+
+.edit-menu input {
+    margin-top: 10px;
+    border: 1px solid #d6d6d6;
+    height: 40px;
+    color: #494949;
+    border-radius: 6px;
+    font-size: 17px;
+    font-weight: 400;
+    padding-left: 10px;
+    width: 270px;
+}
+
+.menu-buttons {
+    display: flex;
+    border: none;
+    margin-top: 10px;
+    border: none;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.menu-buttons button {
+    border: none;
+    padding: 8px 16px;
+}
+
+.errors {
+    color: rgb(255, 59, 48);
+    padding: 10px;
+    border-radius: 5px;
+
+}

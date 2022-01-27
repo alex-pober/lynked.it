@@ -4,6 +4,7 @@ import { NavLink, useHistory, useParams, Redirect } from "react-router-dom";
 import { deleteAccount, EditProfile } from '../../store/session';
 import { logout } from '../../store/session';
 import NavBar from "../NavBar"
+import "./AccountInfo.css"
 
 const AccountInfo = () => {
   const [errors, setErrors] = useState([]);
@@ -54,7 +55,6 @@ const AccountInfo = () => {
     const updated = await dispatch(EditProfile(user_id, username, email, name, bio, profilePicImg, bannerPicImg, phoneNumber, menu));
     if (updated[0].includes('Username is already in use')) {
       setErrors(updated)
-      console.log(errors)
     }
   };
 
@@ -103,91 +103,95 @@ const AccountInfo = () => {
   return (
     <>
     <NavBar />
-      <form onSubmit={onEditProfile}>
-        <div>
-          {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
-        </div>
-        <div>
-          <label>User Name</label>
-          <input
-            type='text'
-            name='username'
-            onChange={updateUsername}
-            value={username}
-            required={true}
-          ></input>
-        </div>
-        <div>
-          <label>Email</label>
-          <input
-            type='text'
-            name='email'
-            onChange={updateEmail}
-            value={email}
-            required={true}
-          ></input>
-        </div>
-        <div>
-          <label>Name</label>
-          <input
-            type='text'
-            name='name'
-            onChange={updateName}
-            value={name}
-            required={true}
-          ></input>
-        </div>
-        <div>
-          <label>Bio</label>
-          <textarea
-            type='text'
-            name='bio'
-            onChange={updateBio}
-            value={bio}
-          ></textarea>
-        </div>
-        <div>
-          <label>Profile Picture URL</label>
-          <input
-            type='text'
-            name='profilePicImg'
-            onChange={updateprofilePicImg}
-            value={profilePicImg}
-          ></input>
-        </div>
-        <div>
-          <label>Banner Picture URL</label>
-          <input
-            type='text'
-            name='bannerPicImg'
-            onChange={updatebannerPicImg}
-            value={bannerPicImg}
-          ></input>
-        </div>
-        <div>
-          <label>Phone Number</label>
-          <input
-            type='integer'
-            name='phoneNumber'
-            onChange={updatephoneNumber}
-            value={phoneNumber}
-          ></input>
-        </div>
-        <div>
-          <label>Menu</label>
-          <input
-            type='checkbox'
-            name='menu'
-            onChange={updatemenu}
-            // value={menu}
-            defaultChecked={userSession.menu}
-          ></input>
-        </div>
-        <button type='submit'>Update Info</button>
-      </form>
+    <div className='main-account-info-div'>
+          <div className="errors">
+            {errors.map((error, ind) => (
+              <div key={ind}>{error}</div>
+            ))}
+          </div>
+      <div className='labels-account-info'>
+        <form className='form-account-info' onSubmit={onEditProfile}>
+          <div>
+            <label>User Name</label>
+            <input
+              type='text'
+              name='username'
+              onChange={updateUsername}
+              value={username}
+              required={true}
+            ></input>
+          </div>
+          <div>
+            <label>Email</label>
+            <input
+              type='text'
+              name='email'
+              onChange={updateEmail}
+              value={email}
+              required={true}
+            ></input>
+          </div>
+          <div>
+            <label>Name</label>
+            <input
+              type='text'
+              name='name'
+              onChange={updateName}
+              value={name}
+              required={true}
+            ></input>
+          </div>
+          <div>
+            <label>Bio</label>
+            <textarea
+              type='text'
+              name='bio'
+              onChange={updateBio}
+              value={bio}
+            ></textarea>
+          </div>
+          <div>
+            <label>Profile Picture URL</label>
+            <input
+              type='text'
+              name='profilePicImg'
+              onChange={updateprofilePicImg}
+              value={profilePicImg}
+            ></input>
+          </div>
+          <div>
+            <label>Banner Picture URL</label>
+            <input
+              type='text'
+              name='bannerPicImg'
+              onChange={updatebannerPicImg}
+              value={bannerPicImg}
+            ></input>
+          </div>
+          <div>
+            <label>Phone Number</label>
+            <input
+              type='integer'
+              name='phoneNumber'
+              onChange={updatephoneNumber}
+              value={phoneNumber}
+            ></input>
+          </div>
+          <div>
+            <label>Menu</label>
+            <input
+              type='checkbox'
+              name='menu'
+              onChange={updatemenu}
+              // value={menu}
+              defaultChecked={userSession.menu}
+            ></input>
+          </div>
+          <button className='create-link' type='submit'>Update Info</button>
+        </form>
       <button onClick={() => handleDelete(user_id)}>Terminate Account</button>
+      </div>
+    </div>
     </>
   );
 };

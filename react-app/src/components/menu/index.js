@@ -19,6 +19,17 @@ const Menu = () => {
     const allMenus = useSelector(state => state?.menu)
     let menuValues = Object.values(allMenus)
     const history = useHistory();
+    const validUrl = require('valid-url');
+
+    //Error Validator
+    const validate = () => {
+        const errors = [];
+        if (!validUrl.isUri(link)) {
+            errors.push("Invalid link, check for typos")
+        }
+        return errors
+    }
+
 
     const updateTitle = e => {
         setTitle(e.target.value)
@@ -29,6 +40,10 @@ const Menu = () => {
 
     const submit = async (e) => {
         e.preventDefault();
+
+        const errors = validate();
+        if (errors.length > 0) return setErrors(errors);
+
         const newMenu = {
             user_id: user.id,
             title,
@@ -37,21 +52,13 @@ const Menu = () => {
         dispatch(addOneMenu(newMenu))
         setLink('')
         setTitle('')
+        setErrors([])
     }
 
     return (
     <>
     <NavBar />
-        <div className="links">
-            {menuValues.map(menu => (
-                <>
-                <h2>{menu?.title}</h2>
-                <EditMenuForm menuObj={menu.id} maplink={menu?.link} maptitle={menu?.title}/>
-                <embed className='pdf' src={menu?.link+"#toolbar=0&navpanes=0&scrollbar=0"} display="flex"></embed>
-            </>
-            ))}
-        </div >
-        <form className="links" onSubmit={submit}>
+        <form className="submit-form" onSubmit={submit}>
             <div className="errors">
                 {errors.map((error, ind) => (
                     <div key={ind}>{error}</div>
@@ -61,7 +68,7 @@ const Menu = () => {
                 <input
                     name='title'
                     type='text'
-                    placeholder="Title for Link"
+                    placeholder="Title for Menu"
                     value={title}
                     onChange={updateTitle}
                     required={true}
@@ -71,14 +78,23 @@ const Menu = () => {
                 <input
                     name='link'
                     type='text'
-                    placeholder="Link"
+                    placeholder="Link 'https://www....'"
                     value={link}
                     onChange={updateLink}
                     required={true}
                 />
             </div>
-            <button type='submit'>Create New Link</button>
+            <button className="create-link" type='submit'>Create New Menu</button>
         </form>
+        <div className="all-menus">
+            {menuValues.map(menu => (
+            <div className="each-menu">
+                <h1>{menu?.title}</h1>
+                <embed className='pdf' src={menu?.link+"#toolbar=0&navpanes=0&scrollbars=0&statusbar=0&view=fit"}></embed>
+                <EditMenuForm menuObj={menu.id} maplink={menu?.link} maptitle={menu?.title}/>
+            </div>
+            ))}
+        </div >
     </>
   );
 }

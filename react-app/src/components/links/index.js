@@ -59,11 +59,12 @@ const Links = () => {
     <NavBar />
         <div className="links-and-iphone">
             <div className="links">
+                <p className="instructions">Active Links:</p>
+                <div className='line' />
                 {linkValues?.map(link => (
                 <>
-                    {/* <a href={`${link.link}`}>{link.title}</a> */}
                     <EditLinkForm maplink={link.link} maptitle={link.title} linkobj={link.id}/>
-                    {console.log(link.title)}
+                    <div className='line' />
                 </>
                 ))}
             </div >
@@ -81,7 +82,7 @@ const Links = () => {
                     ))}
                 </div >
             </div>
-            <form className="submit-form"onSubmit={submit}>
+            <form className="submit-form" onSubmit={submit}>
                 <div className="errors">
                     {errors.map((error, ind) => (
                         <div key={ind}>{error}</div>

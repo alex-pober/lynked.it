@@ -7,7 +7,6 @@ import './EditLinks.css'
 const EditLinkForm = ({maplink, maptitle, linkobj}) => {
     const dispatch = useDispatch();
     const postId = linkobj
-    console.log(postId)
     // useEffect(() => {
     //     dispatch(getOneLinks(postId))
     // }, [dispatch])
@@ -87,7 +86,7 @@ const EditLinkForm = ({maplink, maptitle, linkobj}) => {
                 </div>
                 <div className='buttons'>
                     <button className="update" type='submit'>Update</button>
-                    <button className="delete"onClick={() => handleDelete(postId)}>Delete</button>
+                    <button className="delete" onClick={() => handleDelete(postId)}>Delete</button>
                 </div>
             </form>
         </>

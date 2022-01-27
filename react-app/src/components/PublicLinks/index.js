@@ -8,7 +8,6 @@ import './PublicLinks.css'
 
 const PublicLinks = () => {
     const id = useParams()?.usernameParams
-    console.log(id)
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getUserId(id))
@@ -20,7 +19,6 @@ const PublicLinks = () => {
        dispatch(getAllLinks(+userId))
     }, [+userId])
    const setLinks = useSelector(state => state?.link)
-   console.log(userValue)
 
 
 return (

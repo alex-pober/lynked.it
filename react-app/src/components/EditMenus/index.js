@@ -3,7 +3,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { updateOneMenu, getOneLinks, deleteOneMenu } from "../../store/menu";
 import _ from 'lodash';
-// import './EditLinks.css'
+import './EditMenus.css'
 
 const EditMenuForm = ({maplink, maptitle, menuObj}) => {
     const dispatch = useDispatch();
@@ -60,9 +60,9 @@ const EditMenuForm = ({maplink, maptitle, menuObj}) => {
 
     return (
         <>
-            <form className='edit-your-comment' onSubmit={onEdit}>
+            <form className="edit-menu" onSubmit={onEdit}>
                 <div>
-                    <div>
+                    <div className="errors">
                         {errors.map((error, ind) => (
                             <div key={ind}>{error}</div>
                         ))}
@@ -87,8 +87,10 @@ const EditMenuForm = ({maplink, maptitle, menuObj}) => {
                             required={true}
                         />
                     </div>
-                    <button className="hidden-submit" type='submit'>Update</button>
-                    <button onClick={() => handleDelete(menuId)}>Delete</button>
+                </div>
+                <div className='menu-buttons'>
+                    <button className="update" type='submit'>Update</button>
+                    <button className="delete" onClick={() => handleDelete(menuId)}>Delete</button>
                 </div>
             </form>
         </>
