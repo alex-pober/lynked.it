@@ -5,6 +5,7 @@ const GET_LINK = 'links/GET_LINK'
 const ADD_LINK = 'links/ADD_LINK'
 const UPDATE_LINK = 'links/UPDATE_LINK'
 const DELETE_LINK = 'links/DELETE_LINK'
+const CLEAR_LINK = 'links/CLEAR_LINK'
 
 const getLink = link => ({
     type: GET_LINK,
@@ -23,6 +24,11 @@ const updateLink = link => ({
 
 const deleteLink = link => ({
     type: DELETE_LINK,
+    payload: link
+})
+
+const clearLink = link => ({
+    type: CLEAR_LINK,
     payload: link
 })
 
@@ -78,6 +84,11 @@ export const deleteOneLink = id => async dispatch => {
     }
 }
 
+export const clearAllLinks= () => async dispatch => {
+        dispatch(clearLink())
+}
+
+
 const initialState = {};
 
 export default function (state = initialState, action) {
@@ -107,7 +118,9 @@ export default function (state = initialState, action) {
             // return newState
             return _.omit(state, action.payload)
 
-
+        case CLEAR_LINK:
+            newState = {}
+            return newState
 
         default:
             return state;

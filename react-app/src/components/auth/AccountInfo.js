@@ -185,7 +185,7 @@ const AccountInfo = () => {
               onChange={updatemenu}
               // value={menu}
               defaultChecked={userSession.menu}
-            ></input>
+              ></input>
           </div>
           <button className='create-link' type='submit'>Update Info</button>
         </form>

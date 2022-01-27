@@ -104,6 +104,7 @@
 
 .mock-name {
     font-weight: bold;
+    max-width: 243px;
 }
 
 .create-link{
@@ -148,4 +149,11 @@
     color:rgb(124, 124, 124);
     width: 100px;
     margin-bottom: 0px;
+}
+
+.mock-bio{
+    max-width: 243px;
+    margin-top: 5px;
+    font-size: 15px;
+    backdrop-filter: blur(2px);
 }

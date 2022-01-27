@@ -3,6 +3,8 @@
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: center;
+    z-index: 2;
+    position: relative;
 }
 
 .public-links a {
@@ -18,6 +20,8 @@
     white-space: 5px;
     margin: 5px;
     cursor: pointer;
+    background-color: white;
+    color: black;
 }
 
 .user-info {
@@ -25,4 +29,28 @@
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: center;
+    z-index: 2;
+    position: relative;
 }
+
+.public-background-pic {
+    position: absolute;
+    z-index: 1;
+    margin-left: auto;
+margin-right: auto;
+left: 0;
+right: 0;
+text-align: center;
+}
+
+/* iphone 12 */
+@media only screen
+    and (min-device-width : 425px)
+    and (max-device-height : 926px)
+    and (-webkit-device-pixel-ratio : 3){
+
+        a {
+            width: 100%;
+        }
+
+     }

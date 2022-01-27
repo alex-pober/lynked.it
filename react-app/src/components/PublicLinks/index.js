@@ -23,18 +23,21 @@ const PublicLinks = () => {
 
 return (
     <>
-    <div className="user-info">
-        <h2>{userValue?.name}</h2>
-        <p>{userValue?.bio}</p>
-
+    <div>
+        <img className='public-background-pic' src={userValue?.bannerPicImg}></img>
+        <div className="user-info">
+            <img className="mock-profile-pic"src={userValue?.profilePicImg}></img>
+            <h2>{userValue?.name}</h2>
+            <p>{userValue?.bio}</p>
+        </div>
+        <div className="public-links">
+            {Object.values(setLinks).map(link => (
+            <>
+                <a href={`${link?.link}`}>{link?.title}</a>
+            </>
+            ))}
+        </div >
     </div>
-    <div className="public-links">
-        {Object.values(setLinks).map(link => (
-        <>
-            <a href={`${link?.link}`}>{link?.title}</a>
-        </>
-        ))}
-    </div >
     </>
 )
 }

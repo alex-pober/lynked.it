@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import { signUp } from '../../store/session';
 
 const SignUpForm = () => {
@@ -16,6 +17,7 @@ const SignUpForm = () => {
   const [phoneNumber, setphoneNumber] = useState('');
   const [menu, setmenu] = useState();
   const user = useSelector(state => state.session.user);
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const onSignUp = async (e) => {
@@ -69,7 +71,7 @@ const SignUpForm = () => {
   };
 
   if (user) {
-    return <Redirect to='/' />;
+    history.go(`/${user.username}/admin`)
   }
 
   return (
