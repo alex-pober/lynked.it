@@ -68,6 +68,8 @@ const Links = () => {
                 </>
                 ))}
             </div >
+            <div>
+            <div className="live-link">Test test</div>
             <div className="iphone-mockup">
                 <img className="iphone-mockup-background" src={user.bannerPicImg}></img>
                 <img className="iphone-border" src="https://i.imgur.com/4ZENvQM.png"/>
@@ -83,6 +85,7 @@ const Links = () => {
                 </div >
             </div>
             <form className="submit-form" onSubmit={submit}>
+                <span>Create a button for any link you want</span>
                 <div className="errors">
                     {errors.map((error, ind) => (
                         <div key={ind}>{error}</div>
@@ -110,6 +113,7 @@ const Links = () => {
                 </div>
                 <button className="create-link" type='submit'>Create New Link</button>
             </form>
+            </div>
         </div>
     </>
   );

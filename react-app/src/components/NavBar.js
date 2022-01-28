@@ -15,12 +15,8 @@ const NavBar = () => {
   // console.log(username.username)
   return (
     <nav>
-      {/* <NavLink to='/' exact={true} activeClassName='active'>
-        Home
-      </NavLink> */}
-      {/* <NavLink to='/users' exact={true} activeClassName='active'>
-        Users
-      </NavLink> */}
+      <img src="https://i.imgur.com/rRbbNJv.png"></img>
+      <div>
       {!user?.id && (
       <>
         <NavLink to='/login' exact={true} activeClassName='active'>
@@ -46,9 +42,10 @@ const NavBar = () => {
 
       {user?.id && (
       <NavLink to={`/${user.username}/account-info`} exact={true}>
-        AccountInfo
+        Account Info
       </NavLink>
       )}
+      </div>
       {user?.id && (
         <LogoutButton />
       )}

@@ -59,6 +59,7 @@ const Menu = () => {
     <>
     <NavBar />
         <form className="submit-form" onSubmit={submit}>
+            <span>You can link an image URL or PDF URL of your menu</span>
             <div className="errors">
                 {errors.map((error, ind) => (
                     <div key={ind}>{error}</div>

@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { NavLink, useHistory, useParams, Redirect } from "react-router-dom";
 import { deleteAccount, EditProfile } from '../../store/session';
 import { logout } from '../../store/session';
+import { clearAllLinks } from '../../store/link';
 import NavBar from "../NavBar"
 import "./AccountInfo.css"
 
@@ -52,15 +53,22 @@ const AccountInfo = () => {
     let errors = validate();
     if (errors.length > 0) return setErrors(errors);
 
-    const updated = await dispatch(EditProfile(user_id, username, email, name, bio, profilePicImg, bannerPicImg, phoneNumber, menu));
-    if (updated[0].includes('Username is already in use')) {
-      setErrors(updated)
+    const data = await dispatch(EditProfile(user_id, username, email, name, bio, profilePicImg, bannerPicImg, phoneNumber, menu));
+    console.log(data)
+    if (data) {
+      setErrors(data);
     }
+    // if (updated[0].includes('Username is already in use')) {
+    //   setErrors(updated)
+    // } else if (updated[0].includes('Email address is already in use')){
+    //   setErrors(updated)
+    // }
   };
 
   const handleDelete = (id) => {
     dispatch(logout())
     dispatch(deleteAccount(id))
+    dispatch(clearAllLinks());
     history.push(`/`)
   }
 

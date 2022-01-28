@@ -157,3 +157,9 @@
     font-size: 15px;
     backdrop-filter: blur(2px);
 }
+
+.live-link{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

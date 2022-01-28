@@ -7,9 +7,6 @@ import './EditLinks.css'
 const EditLinkForm = ({maplink, maptitle, linkobj}) => {
     const dispatch = useDispatch();
     const postId = linkobj
-    // useEffect(() => {
-    //     dispatch(getOneLinks(postId))
-    // }, [dispatch])
     const user = useSelector(state => state.session?.user);
     const linkId = useSelector(state => state?.link?.link)
     const history = useHistory();
@@ -20,6 +17,17 @@ const EditLinkForm = ({maplink, maptitle, linkobj}) => {
         if (state.session.user) {
             return state.session.user.id
         }})
+    const validUrl = require('valid-url');
+
+    //Error Validator
+    const validate = () => {
+        const errors = [];
+        if (!validUrl.isUri(link)) {
+            errors.push("Invalid link, check for typos")
+        }
+        return errors
+    }
+
 
     if (!linkId?.user_id == user?.id) {
         history.push(`/${user.username}/admin`)
@@ -40,6 +48,9 @@ const EditLinkForm = ({maplink, maptitle, linkobj}) => {
     const onEdit = async e => {
         e.preventDefault()
 
+        const errors = validate();
+        if (errors.length > 0) return setErrors(errors);
+
         const editLink = {
             id: +linkobj,
             user_id: userId,
@@ -48,6 +59,7 @@ const EditLinkForm = ({maplink, maptitle, linkobj}) => {
         }
 
         dispatch(updateOneLink(editLink))
+        setErrors([])
     }
     const handleDelete = (postId) => {
         dispatch(deleteOneLink(postId))
@@ -58,7 +70,7 @@ const EditLinkForm = ({maplink, maptitle, linkobj}) => {
         <>
             <form  onSubmit={onEdit}>
                 <div className='edit-link-form'>
-                    <div>
+                    <div className="errors">
                         {errors.map((error, ind) => (
                             <div key={ind}>{error}</div>
                         ))}

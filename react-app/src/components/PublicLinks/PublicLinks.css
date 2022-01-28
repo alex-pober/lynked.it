@@ -49,8 +49,14 @@ text-align: center;
     and (max-device-height : 926px)
     and (-webkit-device-pixel-ratio : 3){
 
-        a {
+        .public-links {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            align-items: center;
             width: 100%;
+            z-index: 2;
+            position: relative;
         }
 
      }

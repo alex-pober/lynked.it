@@ -14,10 +14,20 @@ const EditMenuForm = ({maplink, maptitle, menuObj}) => {
     const [errors, setErrors] = useState([]);
     const [title, setTitle] = useState('');
     const [link, setLink] = useState('');
+    const validUrl = require('valid-url');
     const userId = useSelector(state => {
         if (state.session.user) {
             return state.session.user.id
         }})
+
+    //Error Validator
+    const validate = () => {
+        const errors = [];
+        if (!validUrl.isUri(link)) {
+            errors.push("Invalid link, check for typos")
+        }
+        return errors
+    }
 
     if (!linkId?.user_id == user?.id) {
         history.push(`/${user.username}/admin`)
@@ -37,7 +47,11 @@ const EditMenuForm = ({maplink, maptitle, menuObj}) => {
 
     const onEdit = async e => {
         e.preventDefault()
-        setErrors([]);
+
+        const errors = validate();
+        if (errors.length > 0) return setErrors(errors);
+
+        // setErrors([]);
 
         const editLink = {
             id: +menuId,
@@ -46,13 +60,15 @@ const EditMenuForm = ({maplink, maptitle, menuObj}) => {
             link,
         }
 
-        let submitted = await dispatch(updateOneMenu(editLink))
-        .catch(async res => {
-            const data = await res.json();
-            if (data && data.errors) setErrors(data.errors);
-        })
-        if (submitted) {
-        }
+        dispatch(updateOneMenu(editLink))
+        setErrors([])
+        // let submitted = await dispatch(updateOneMenu(editLink))
+        // .catch(async res => {
+        //     const data = await res.json();
+        //     if (data && data.errors) setErrors(data.errors);
+        // })
+        // if (submitted) {
+        // }
     }
     const handleDelete = (postId) => {
         dispatch(deleteOneMenu(postId))
