@@ -38,10 +38,28 @@
 
 }
 
+.form-account-info button{
+    display: flex;
+}
+
 .main-account-info-div{
     display: flex;
     flex-direction: column;
     margin-top: -313px;
     padding: 360px;
     align-items: center;
+}
+
+.menu-description {
+    margin-left: 10px;
+}
+
+.menu-description span {
+    color: rgb(142, 142, 147);
+    max-width: 270px;
+}
+
+.menu-description input{
+    margin: -106px;
+    height: 30px;
 }

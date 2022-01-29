@@ -137,7 +137,7 @@ export const EditProfile = (id, username, email, name, bio, profilePicImg, banne
   if (response.ok) {
     const data = await response.json();
     dispatch(setUser(data))
-    return 'Successfully updated.'
+    return
   } else if (response.status < 500) {
     const data = await response.json();
     if (data.errors) {

@@ -69,7 +69,10 @@ const Links = () => {
                 ))}
             </div >
             <div>
-            <div className="live-link">Test test</div>
+            <div className="live-link">
+                <a href={`/${user.username}/`}><img src="https://i.imgur.com/rRbbNJv.png"></img>/ {user.username}</a>
+            </div>
+                <br />
             <div className="iphone-mockup">
                 <img className="iphone-mockup-background" src={user.bannerPicImg}></img>
                 <img className="iphone-border" src="https://i.imgur.com/4ZENvQM.png"/>
@@ -85,7 +88,9 @@ const Links = () => {
                 </div >
             </div>
             <form className="submit-form" onSubmit={submit}>
-                <span>Create a button for any link you want</span>
+                <span>Create a link to any website</span>
+                <br />
+                <span>Pro Tip: Change your profile picture or background at anytime in Account Info tab</span>
                 <div className="errors">
                     {errors.map((error, ind) => (
                         <div key={ind}>{error}</div>

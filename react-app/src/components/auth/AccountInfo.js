@@ -21,6 +21,7 @@ const AccountInfo = () => {
   const user_id = useSelector(state => state.session?.user?.id);
   const dispatch = useDispatch();
   const history = useHistory()
+  const validUrl = require('valid-url');
   const { usernameParams } = useParams()
 
   useEffect(() => {
@@ -38,13 +39,15 @@ const AccountInfo = () => {
     const errors = [];
 
     if (!username) {
-      errors.push("Please provide an updated username.")
+      errors.push("Username can't be empty")
     }
-    if (profilePicImg.length > 2000) {
-      errors.push("Please provide a valid URL.")
+    if (!validUrl.isUri(profilePicImg)) {
+      errors.push("Profile Picture URL is not valid")
     }
-    if (!profilePicImg) errors.push('Please provide an image URL for your profile picture.');
-    setErrors(errors)
+    if (!validUrl.isUri(bannerPicImg)) {
+      errors.push("Banner Picture URL is not valid")
+    }
+
     return errors;
   }
 
@@ -58,11 +61,6 @@ const AccountInfo = () => {
     if (data) {
       setErrors(data);
     }
-    // if (updated[0].includes('Username is already in use')) {
-    //   setErrors(updated)
-    // } else if (updated[0].includes('Email address is already in use')){
-    //   setErrors(updated)
-    // }
   };
 
   const handleDelete = (id) => {
@@ -107,6 +105,8 @@ const AccountInfo = () => {
   if (!(Object.values(userSession)[8] === usernameParams)) {
     return <Redirect to='/' />;
   }
+
+  console.log(errors)
 
   return (
     <>
@@ -185,7 +185,7 @@ const AccountInfo = () => {
               value={phoneNumber}
             ></input>
           </div>
-          <div>
+          <div className="menu-description">
             <label>Menu</label>
             <input
               type='checkbox'
@@ -194,7 +194,8 @@ const AccountInfo = () => {
               // value={menu}
               defaultChecked={userSession.menu}
               ></input>
-          </div>
+              <span>This option lets your link Images or PDFs of menus. A great tool for resturants!</span>
+            </div>
           <button className='create-link' type='submit'>Update Info</button>
         </form>
       <button onClick={() => handleDelete(user_id)}>Terminate Account</button>

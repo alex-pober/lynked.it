@@ -34,5 +34,7 @@
 }
 
 .submit-form span {
-    color: rgb(174, 174, 178)
+    color: rgb(174, 174, 178);
+    max-width: 320px;
+    text-align: center;
 }
