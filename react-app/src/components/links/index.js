@@ -80,6 +80,10 @@ const Links = () => {
                     <img className="mock-profile-pic"src={user.profilePicImg}></img>
                     <span className="mock-name">{user.name}</span>
                     <span className="mock-bio">{user.bio}</span>
+                    {user.menu
+                        ? <a target="_blank" rel="noopener noreferrer" href={`/${user.username}/menu`}>Menu</a>
+                        : null
+                    }
                     {linkValues?.map(link => (
                     <>
                         <a href={`${link.link}`}>{link.title}</a>

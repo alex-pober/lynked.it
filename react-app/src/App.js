@@ -13,6 +13,7 @@ import Menu from './components/menu/index'
 import EditLinkForm from './components/EditLinks/index'
 import PublicLinks from './components/PublicLinks';
 import SplashPage from './components/LandingPage'
+import PublicMenus from './components/PublicMenus';
 import { authenticate } from './store/session';
 
 function App() {
@@ -62,6 +63,9 @@ function App() {
       </ProtectedRoute>
       <Route path='/:usernameParams/' exact={true}>
         <PublicLinks />
+      </Route>
+      <Route path='/:usernameParams/menu' exact={true}>
+        <PublicMenus />
       </Route>
       </Switch>
     </BrowserRouter>

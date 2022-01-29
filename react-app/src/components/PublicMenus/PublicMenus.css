@@ -1,0 +1,31 @@
+.public-menu {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    z-index: 2;
+    position: relative;
+}
+
+.public-menu embed{
+    width: 100vw;
+    height: 100vw;
+    object-fit: contain;
+}
+/*
+@media only screen
+    and (min-device-width : 425px)
+    and (max-device-height : 926px)
+    and (-webkit-device-pixel-ratio : 3){
+
+        .public-links {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            align-items: center;
+            width: 100%;
+            z-index: 2;
+            position: relative;
+        }
+
+     } */
