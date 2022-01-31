@@ -22,27 +22,25 @@ const PublicMenus = () => {
 
 
 return (
-    <div>
-        <img className='public-background-pic' src={userValue?.bannerPicImg}></img>
+    <div className='background-menu'>
+        {/* <img className='public-background-pic' src={userValue?.bannerPicImg}></img> */}
         {/* <div className="user-info">
             <img className="mock-profile-pic"src={userValue?.profilePicImg}></img>
             <h2>{userValue?.name}</h2>
             <p>{userValue?.bio}</p>
         </div> */}
-        <div className="public-menu">
             {Object.values(setMenus).map(menu => (
-            <>
-                <h2>{menu.title}</h2>
-                {/* <object
-                width="900"
-                height="900"
-                // data={`https://docs.google.com/gview?embedded=true&url=${menu.link}`}>
-                data={`${menu.link}'#toolbar=0&scrollbars=0'`}>
-                </object> */}
-                <embed src={menu?.link+"#toolbar=0&navpanes=0&scrollbars=0&statusbar=0"}></embed>
-            </>
+                <div className="public-menu">
+                <h3>{menu.title}</h3>
+                {/* // <embed src={menu?.link}></embed> */}
+                {(menu?.link.indexOf(".pdf") != -1)
+                    ? <object className="object-menu" data={`https://drive.google.com/viewerng/viewer?embedded=true&url=${menu?.link}`} width="425" height="600"/>
+                    : <img className='menu-img' src={menu?.link}></img>
+                }
+
+
+                </div>
             ))}
-        </div >
     </div>
 )
 }

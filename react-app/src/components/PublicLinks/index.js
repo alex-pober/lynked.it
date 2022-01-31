@@ -24,14 +24,22 @@ const PublicLinks = () => {
 return (
     <>
     <div>
-        <img className='public-background-pic' src={userValue?.bannerPicImg}></img>
+        {userValue?.bannerPicImg
+            ? <img className='public-background-pic' src={userValue?.bannerPicImg}></img>
+            : null
+        }
+        {/* <img className='public-background-pic' src={userValue?.bannerPicImg}></img> */}
         <div className="user-info">
-            <img className="mock-profile-pic"src={userValue?.profilePicImg}></img>
+            {userValue?.profilePicImg
+                ? <img className="mock-profile-pic"src={userValue?.profilePicImg}></img>
+                : null
+            }
+            {/* <img className="mock-profile-pic"src={userValue?.profilePicImg}></img> */}
             <h2>{userValue?.name}</h2>
             <p>{userValue?.bio}</p>
         </div>
         <div className="public-links">
-        {userValue.menu
+        {userValue?.menu
             ? <a href={`/${userValue.username}/menu`}>Menu</a>
             : null
         }

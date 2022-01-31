@@ -20,7 +20,7 @@ const DemoButton = () => {
     return <Redirect to={`/${user?.username}/admin`} />;
     }
 
-  return <button onClick={handleDemo}>Demo User</button>;
+  return <button className='demo-button' onClick={handleDemo}>See Demo</button>;
 }
 
 

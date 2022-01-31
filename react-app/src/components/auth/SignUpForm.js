@@ -18,10 +18,29 @@ const SignUpForm = () => {
   const [menu, setmenu] = useState();
   const user = useSelector(state => state.session.user);
   const history = useHistory();
+  const validUrl = require('valid-url');
   const dispatch = useDispatch();
 
+  const validate = () => {
+    const errors = [];
+
+    if (!username) {
+      errors.push("Username can't be empty")
+    }
+    if (!validUrl.isUri(profilePicImg) && !profilePicImg == "") {
+      errors.push("Profile Picture URL is not valid")
+    }
+    if (!validUrl.isUri(bannerPicImg) && !bannerPicImg == "") {
+      errors.push("Banner Picture URL is not valid")
+    }
+
+    return errors;
+  }
   const onSignUp = async (e) => {
     e.preventDefault();
+    let errors = validate();
+    if (errors.length > 0) return setErrors(errors);
+    
     if (password === repeatPassword) {
       const data = await dispatch(signUp(username, email, password, name, bio, profilePicImg, bannerPicImg, phoneNumber, menu));
       if (data) {
@@ -29,6 +48,7 @@ const SignUpForm = () => {
       }
     }
   };
+
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
@@ -71,46 +91,56 @@ const SignUpForm = () => {
   };
 
   if (user) {
-    history.go(`/${user.username}/admin`)
-  }
+    return <Redirect to={`/${user?.username}/admin`} />;
+    }
+
 
   return (
-    <form onSubmit={onSignUp}>
-      <div>
+    <div className='main-login'>
+    <div className='new-here'>
+          <h1>Almost there</h1>
+          <p>Just a few questions and you'll be making links in no time!</p>
+          <a href="/login">Log in</a>
+    </div>
+    <form className="login-form" onSubmit={onSignUp}>
+      <div className='errors'>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
       </div>
       <div>
-        <label>User Name</label>
         <input
+          placeholder="Username"
           type='text'
           name='username'
           onChange={updateUsername}
           value={username}
+          required={true}
         ></input>
       </div>
       <div>
-        <label>Email</label>
         <input
+          placeholder="Email"
           type='text'
           name='email'
           onChange={updateEmail}
           value={email}
+          required={true}
         ></input>
       </div>
       <div>
-        <label>Password</label>
         <input
+          placeholder="Password"
           type='password'
           name='password'
           onChange={updatePassword}
           value={password}
+          required={true}
         ></input>
       </div>
       <div>
-        <label>Repeat Password</label>
         <input
+          placeholder="Repeat Password"
           type='password'
           name='repeat_password'
           onChange={updateRepeatPassword}
@@ -119,17 +149,18 @@ const SignUpForm = () => {
         ></input>
       </div>
       <div>
-        <label>Name</label>
         <input
+          placeholder="Name"
           type='text'
           name='name'
           onChange={updateName}
           value={name}
+          required={true}
         ></input>
       </div>
       <div>
-        <label>Bio</label>
         <textarea
+          placeholder="Bio"
           type='text'
           name='bio'
           onChange={updateBio}
@@ -137,8 +168,8 @@ const SignUpForm = () => {
         ></textarea>
       </div>
       <div>
-        <label>Profile Picture URL</label>
         <input
+          placeholder="Profile Picture URL"
           type='text'
           name='profilePicImg'
           onChange={updateprofilePicImg}
@@ -146,8 +177,8 @@ const SignUpForm = () => {
         ></input>
       </div>
       <div>
-        <label>Banner Picture URL</label>
         <input
+          placeholder="Background Picture URL"
           type='text'
           name='bannerPicImg'
           onChange={updatebannerPicImg}
@@ -155,26 +186,28 @@ const SignUpForm = () => {
         ></input>
       </div>
       <div>
-        <label>Phone Number</label>
         <input
+          placeholder="Phone Number"
           type='integer'
           name='phoneNumber'
           onChange={updatephoneNumber}
           value={phoneNumber}
+          required={true}
         ></input>
       </div>
-      <div>
-        <label>Menu</label>
+      <div className='checkbox'>
         <input
           type='checkbox'
           name='menu'
           onChange={updatemenu}
           value={menu}
           defaultChecked={false}
-        ></input>
+          ></input>
+          <p>Check this option if you want menu category. Ideal for resturants.</p>
       </div>
       <button type='submit'>Sign Up</button>
     </form>
+    </div>
   );
 };
 

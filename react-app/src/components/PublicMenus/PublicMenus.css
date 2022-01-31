@@ -5,13 +5,33 @@
     align-items: center;
     z-index: 2;
     position: relative;
+    border: 1px solid gray;
+    background-color: rgb(242, 242, 247);
+    margin: 45px;
+    padding-bottom: 10px;
+    border-radius: 25px;
+    min-width: 900px;
 }
 
-.public-menu embed{
-    width: 100vw;
-    height: 100vw;
-    object-fit: contain;
+.object-menu{
+    float:center ;
+    min-width: 880px;
+    height: 1059px;
 }
+
+.menu-img{
+    min-width: 880px;
+}
+
+.background-menu{
+
+}
+
+/* .public-menu embed{
+    display: flex;
+    max-width: 650px;
+    object-fit: contain;
+} */
 /*
 @media only screen
     and (min-device-width : 425px)

@@ -70,14 +70,20 @@ const Links = () => {
             </div >
             <div>
             <div className="live-link">
-                <a href={`/${user.username}/`}><img src="https://i.imgur.com/rRbbNJv.png"></img>/ {user.username}</a>
+                <a target="_blank" rel="noopener noreferrer" href={`/${user.username}/`}><img src="https://i.imgur.com/rRbbNJv.png"></img>/ {user.username}</a>
             </div>
                 <br />
             <div className="iphone-mockup">
-                <img className="iphone-mockup-background" src={user.bannerPicImg}></img>
-                <img className="iphone-border" src="https://i.imgur.com/4ZENvQM.png"/>
+                {user?.bannerPicImg
+                    ? <img className="iphone-mockup-background" onerror="this.style.display='none';alert('test');" src={user.bannerPicImg}></img>
+                    : null
+                }
+                <img className="iphone-border" src="https://i.imgur.com/4ZENvQM.png" />
                 <div className="iphone-mockup-links">
-                    <img className="mock-profile-pic"src={user.profilePicImg}></img>
+                    {user?.profilePicImg
+                        ? <img className="mock-profile-pic" src={user.profilePicImg} onerror="this.style.display='none'"></img>
+                        : null
+                    }
                     <span className="mock-name">{user.name}</span>
                     <span className="mock-bio">{user.bio}</span>
                     {user.menu

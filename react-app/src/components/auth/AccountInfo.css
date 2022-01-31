@@ -63,3 +63,10 @@
     margin: -106px;
     height: 30px;
 }
+
+.terminate-account {
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    color: red;
+    cursor: pointer;
+}

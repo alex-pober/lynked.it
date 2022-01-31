@@ -41,10 +41,10 @@ const AccountInfo = () => {
     if (!username) {
       errors.push("Username can't be empty")
     }
-    if (!validUrl.isUri(profilePicImg)) {
+    if (!validUrl.isUri(profilePicImg) && !profilePicImg == "") {
       errors.push("Profile Picture URL is not valid")
     }
-    if (!validUrl.isUri(bannerPicImg)) {
+    if (!validUrl.isUri(bannerPicImg) && !bannerPicImg == "") {
       errors.push("Banner Picture URL is not valid")
     }
 
@@ -57,10 +57,13 @@ const AccountInfo = () => {
     if (errors.length > 0) return setErrors(errors);
 
     const data = await dispatch(EditProfile(user_id, username, email, name, bio, profilePicImg, bannerPicImg, phoneNumber, menu));
-    console.log(data)
+
     if (data) {
       setErrors(data);
     }
+    // setErrors([]);
+    console.log(userSession.username)
+    // history.push(`/${userSession.username}/admin/`)
   };
 
   const handleDelete = (id) => {
@@ -106,8 +109,6 @@ const AccountInfo = () => {
     return <Redirect to='/' />;
   }
 
-  console.log(errors)
-
   return (
     <>
     <NavBar />
@@ -121,13 +122,24 @@ const AccountInfo = () => {
         <form className='form-account-info' onSubmit={onEditProfile}>
           <div>
             <label>User Name</label>
-            <input
-              type='text'
-              name='username'
-              onChange={updateUsername}
-              value={username}
-              required={true}
-            ></input>
+            {userSession.username == "DemoAccount"
+              ?
+              <input
+                readOnly={true}
+                type='text'
+                name='username'
+                onChange={updateUsername}
+                value={username}
+                required={true}
+              ></input>
+              : <input
+                type='text'
+                name='username'
+                onChange={updateUsername}
+                value={username}
+                required={true}
+              ></input>
+            }
           </div>
           <div>
             <label>Email</label>
@@ -198,7 +210,11 @@ const AccountInfo = () => {
             </div>
           <button className='create-link' type='submit'>Update Info</button>
         </form>
-      <button onClick={() => handleDelete(user_id)}>Terminate Account</button>
+      {userSession.username == "DemoAccount"
+        ?  <p className="terminate-account">Cannot Terminate Demo Account</p>
+        :  <button className="terminate-account" onClick={() => handleDelete(user_id)}>Terminate Account</button>
+      }
+      {/* <button className="terminate-account" onClick={() => handleDelete(user_id)}>Terminate Account</button> */}
       </div>
     </div>
     </>

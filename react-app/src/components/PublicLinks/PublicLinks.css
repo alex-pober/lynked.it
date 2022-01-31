@@ -22,6 +22,7 @@
     cursor: pointer;
     background-color: white;
     color: black;
+    width: 80vw;
 }
 
 .user-info {
@@ -41,6 +42,9 @@
     left: 0;
     right: 0;
     text-align: center;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
 }
 
 /* iphone 12 */

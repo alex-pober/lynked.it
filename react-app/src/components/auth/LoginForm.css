@@ -1,0 +1,106 @@
+.login-form{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    padding: 30px;
+    height: 700px;
+    white-space: 10px;
+    border: 1px solid #d6d6d6;
+    justify-content: center;
+}
+
+.login-form input {
+    display: flex;
+    border: 1px solid #d6d6d6;
+    margin-bottom: 10px;
+    color: #494949;
+    height: 2.6em;
+    border-radius: 6px;
+    font-size: 17px;
+    line-height: 1.29412;
+    font-weight: 400;
+    width: 300px;
+    padding-left: 10px;
+}
+
+.login-form button {
+    display: flex;
+    width: 200px;
+    border-radius:25px;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 400;
+    min-width: 28px;
+    padding: 12px 16px;
+    background: #0071e3;
+    color: #fff;
+    border: none;
+    justify-content: space-evenly;
+}
+
+.main-login{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    width: 700px;
+    height: 100vh;
+    border-radius: 50px;
+    margin: auto;
+}
+
+.new-here{
+    background: rgb(0,113,227);
+    background: linear-gradient(164deg, rgba(0,113,227,1) 0%, rgba(168,211,255,1) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 762px;
+    color: white;
+    border: 1px solid #d6d6d6;
+}
+
+.new-here p{
+    color: white;
+    margin: 25px;
+    text-align: center;
+}
+
+.new-here a {
+    display: flex;
+    width: 200px;
+    border-radius:25px;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 400;
+    min-width: 28px;
+    padding: 12px 16px;
+    background: #bddeff;
+    color: #0071e3;
+    border: none;
+    justify-content: space-evenly;
+    text-decoration: none;
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    margin: -10px;
+    width: 300px;
+}
+
+.checkbox input {
+    font-size: 10px !important;
+    margin: 11px !important;
+    padding: 0px !important;
+    margin-right: 0px;
+    width: 35px;
+}
+
+.checkbox p {
+    color: #6d6c6c !important;
+}
