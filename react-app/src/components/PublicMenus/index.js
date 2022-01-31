@@ -32,13 +32,10 @@ return (
             {Object.values(setMenus).map(menu => (
                 <div className="public-menu">
                 <h3>{menu.title}</h3>
-                {/* // <embed src={menu?.link}></embed> */}
                 {(menu?.link.indexOf(".pdf") != -1)
                     ? <object className="object-menu" data={`https://drive.google.com/viewerng/viewer?embedded=true&url=${menu?.link}`} width="425" height="600"/>
                     : <img className='menu-img' src={menu?.link}></img>
                 }
-
-
                 </div>
             ))}
     </div>
