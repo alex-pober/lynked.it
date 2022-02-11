@@ -96,26 +96,17 @@ export default function (state = initialState, action) {
     switch (action.type) {
 
         case GET_LINK:
-            // newState = { ...action.payload }
-            // return newState
             const newLink = _.mapKeys(action.payload.links, 'id')
             return {...state, ...newLink}
 
-        // case GET_ONE_LINK:
-        //     return {link: action.payload}
-
         case ADD_LINK:
-            // newState = {...newState, [action.payload.id]: action.payload }
-            // return newState
+
             return {...state, [action.payload.id]: action.payload }
 
         case UPDATE_LINK:
             return {...state, [action.payload.link.id]: action.payload.link}
 
         case DELETE_LINK:
-            // newState = { ...state }
-            // delete newState[action.payload]
-            // return newState
             return _.omit(state, action.payload)
 
         case CLEAR_LINK:

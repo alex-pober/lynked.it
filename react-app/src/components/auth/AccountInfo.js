@@ -143,13 +143,31 @@ const AccountInfo = () => {
           </div>
           <div>
             <label>Email</label>
-            <input
+            {userSession.username == "DemoAccount"
+              ?
+              <input
+                readOnly={true}
+                type='text'
+                name='email'
+                onChange={updateEmail}
+                value={email}
+                required={true}
+              ></input>
+              : <input
+                type='text'
+                name='email'
+                onChange={updateEmail}
+                value={email}
+                required={true}
+              ></input>
+            }
+            {/* <input
               type='text'
               name='email'
               onChange={updateEmail}
               value={email}
               required={true}
-            ></input>
+            ></input> */}
           </div>
           <div>
             <label>Name</label>

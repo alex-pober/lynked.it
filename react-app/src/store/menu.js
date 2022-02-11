@@ -5,6 +5,7 @@ const GET_MENU = 'menus/GET_MENU'
 const ADD_MENU = 'menus/ADD_MENU'
 const UPDATE_MENU = 'menus/UPDATE_MENU'
 const DELETE_MENU = 'menus/DELETE_MENU'
+const CLEAR_MENU = 'links/CLEAR_MENU'
 
 const getMenu = menu => ({
     type: GET_MENU,
@@ -24,6 +25,11 @@ const updateMenu = menu => ({
 const deleteMenu = menu => ({
     type: DELETE_MENU,
     payload: menu
+})
+
+const clearMenu = link => ({
+    type: CLEAR_MENU,
+    payload: link
 })
 
 export const getAllMenu = (id) => async dispatch => {
@@ -79,6 +85,10 @@ export const deleteOneMenu = id => async dispatch => {
     }
 }
 
+export const clearAllMenus= () => async dispatch => {
+    dispatch(clearMenu())
+}
+
 const initialState = {};
 
 export default function (state = initialState, action) {
@@ -97,6 +107,10 @@ export default function (state = initialState, action) {
 
         case DELETE_MENU:
             return _.omit(state, action.payload)
+
+        case CLEAR_MENU:
+            newState = {}
+            return newState
 
         default:
             return state;
