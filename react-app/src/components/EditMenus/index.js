@@ -9,7 +9,8 @@ const EditMenuForm = ({maplink, maptitle, menuObj}) => {
     const dispatch = useDispatch();
     const menuId = menuObj
     const user = useSelector(state => state.session?.user);
-    const linkId = useSelector(state => state?.link?.link)
+    // const linkId = useSelector(state => state?.link?.link)
+    // console.log(linkId)
     const history = useHistory();
     const [errors, setErrors] = useState([]);
     const [title, setTitle] = useState('');
@@ -29,14 +30,14 @@ const EditMenuForm = ({maplink, maptitle, menuObj}) => {
         return errors
     }
 
-    if (!linkId?.user_id == user?.id) {
-        history.push(`/${user.username}/admin`)
-    }
+    // if (!linkId?.user_id == user?.id) {
+    //     history.push(`/${user.username}/admin`)
+    // }
 
     useEffect(() => {
         setTitle(maptitle)
         setLink(maplink)
-    }, [linkId])
+    }, [])
 
     const updateTitle = e => {
         setTitle(e.target.value)

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { NavLink, useHistory, useParams, Redirect } from "react-router-dom";
 import { addOneLink, getAllLinks } from '../../store/link';
+import { BsBoxArrowUpRight } from 'react-icons/bs';
 import NavBar from "../NavBar"
 import EditLinkForm from '../EditLinks/index';
 import './linksCSS.css'
@@ -70,7 +71,9 @@ const Links = () => {
             </div >
             <div>
             <div className="live-link">
-                <a target="_blank" rel="noopener noreferrer" href={`/${user.username}/`}><img src="https://i.imgur.com/rRbbNJv.png"></img>/ {user.username}</a>
+                <a className="title-link">Your public shareable link:</a>
+                <a className="link" target="_blank" rel="noopener noreferrer" href={`/${user.username}/`}><img src="https://i.imgur.com/59mE3Ep.png"></img>lynked.it/{user.username}</a>
+                <a className="new-tab" target="_blank" rel="noopener noreferrer" href={`/${user.username}/`}>Open in new tab <BsBoxArrowUpRight style={{padding: '5px'}}/></a>
             </div>
                 <br />
             <div className="iphone-mockup">

@@ -28,6 +28,18 @@ nav img {
     width: 180px;
 }
 
+.logout-button {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.logout-button:hover{
+    font-weight: 600;
+}
+
 nav div {
     margin-left: 10%;
     margin-right: 10%;
