@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { updateOneMenu, getOneLinks, deleteOneMenu } from "../../store/menu";
+import { ToastContainer, toast } from 'react-toastify';
 import _ from 'lodash';
 import './EditMenus.css'
 
@@ -20,7 +21,16 @@ const EditMenuForm = ({maplink, maptitle, menuObj}) => {
         if (state.session.user) {
             return state.session.user.id
         }})
-
+    const notify = () => toast.success('Updated!', {
+        position: "top-right",
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        });
     //Error Validator
     const validate = () => {
         const errors = [];
@@ -63,6 +73,7 @@ const EditMenuForm = ({maplink, maptitle, menuObj}) => {
 
         dispatch(updateOneMenu(editLink))
         setErrors([])
+        notify()
         // let submitted = await dispatch(updateOneMenu(editLink))
         // .catch(async res => {
         //     const data = await res.json();
@@ -77,6 +88,17 @@ const EditMenuForm = ({maplink, maptitle, menuObj}) => {
 
     return (
         <>
+        <ToastContainer
+            position="top-right"
+            autoClose={2500}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable={false}
+            pauseOnHover
+        />
             <form className="edit-menu" onSubmit={onEdit}>
                 <div>
                     <div className="errors">

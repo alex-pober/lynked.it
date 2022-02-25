@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { updateOneLink, getOneLinks, deleteOneLink } from "../../store/link";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './EditLinks.css'
 
 const EditLinkForm = ({maplink, maptitle, linkobj}) => {
@@ -18,7 +20,16 @@ const EditLinkForm = ({maplink, maptitle, linkobj}) => {
             return state.session.user.id
         }})
     const validUrl = require('valid-url');
-
+    const notify = () => toast.success('Updated!', {
+        position: "top-right",
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        });
     //Error Validator
     const validate = () => {
         const errors = [];
@@ -60,6 +71,7 @@ const EditLinkForm = ({maplink, maptitle, linkobj}) => {
 
         dispatch(updateOneLink(editLink))
         setErrors([])
+        notify()
     }
     const handleDelete = (postId) => {
         dispatch(deleteOneLink(postId))
@@ -68,6 +80,17 @@ const EditLinkForm = ({maplink, maptitle, linkobj}) => {
 
     return (
         <>
+        <ToastContainer
+            position="top-right"
+            autoClose={2500}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable={false}
+            pauseOnHover
+        />
             <form  onSubmit={onEdit}>
                 <div className='edit-link-form'>
                     <div className="errors">

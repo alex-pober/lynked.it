@@ -4,6 +4,7 @@ import { NavLink, useHistory, useParams, Redirect } from "react-router-dom";
 import { deleteAccount, EditProfile } from '../../store/session';
 import { logout } from '../../store/session';
 import { clearAllLinks } from '../../store/link';
+import { ToastContainer, toast } from 'react-toastify';
 import NavBar from "../NavBar"
 import "./AccountInfo.css"
 
@@ -23,6 +24,16 @@ const AccountInfo = () => {
   const history = useHistory()
   const validUrl = require('valid-url');
   const { usernameParams } = useParams()
+  const notify = () => toast.success('Updated!', {
+    position: "top-right",
+    autoClose: 2500,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+    });
 
   useEffect(() => {
     setUsername(userSession.username)
@@ -57,12 +68,12 @@ const AccountInfo = () => {
     if (errors.length > 0) return setErrors(errors);
 
     const data = await dispatch(EditProfile(user_id, username, email, name, bio, profilePicImg, bannerPicImg, phoneNumber, menu));
-
+    notify()
     if (data) {
       setErrors(data);
     }
     // setErrors([]);
-    console.log(userSession.username)
+    // console.log(userSession.username)
     // history.push(`/${userSession.username}/admin/`)
   };
 
@@ -111,6 +122,17 @@ const AccountInfo = () => {
 
   return (
     <>
+     <ToastContainer
+            position="top-right"
+            autoClose={2500}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable={false}
+            pauseOnHover
+        />
     <NavBar />
     <div className='main-account-info-div'>
           <div className="errors">

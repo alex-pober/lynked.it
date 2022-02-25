@@ -34,11 +34,13 @@
 .delete {
     background-color: rgb(255, 69, 58);
     color: white;
+    cursor: pointer;
 }
 
 .update {
     background-color: rgb(10, 132, 255);
     color: white;
+    cursor: pointer;
 }
 
 .line {
