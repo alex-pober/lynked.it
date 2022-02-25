@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import NavBar from "../NavBar"
 import { Redirect, useHistory } from 'react-router-dom';
 import DemoButton from '../auth/DemoUser';
+import { FaGithub, FaLinkedinIn, FaCode } from 'react-icons/fa';
 import "./LandingPage.css"
 
 const SplashPage = () => {
@@ -38,11 +39,16 @@ return (
             </div>
         </div>
         <div className='footer'>
-              <p>Developed by: Alex Poberezhskiy</p>
-                  <a href="https://github.com/alex-pober">GitHub
-                  </a>
-                  <a href="https://www.linkedin.com/in/alexpober">
-                Linked In</a>
+            <div className='footer-title'>
+                <p style={{fontWeight: 700, color: "rgb(99, 99, 102)"}}>Lynked.it</p>
+                <p style={{color: "rgb(174, 174, 178)"}}>Developed and Designed by
+                    <a href="https://alex-pober.github.io/" style={{fontWeight: 400}}> Alex Poberezhskiy</a></p>
+            </div>
+            <div className="footer-icons">
+                <a href="https://www.linkedin.com/in/alexpober"><FaLinkedinIn></FaLinkedinIn></a>
+                <a href="https://github.com/alex-pober"><FaGithub/></a>
+                <a href="https://github.com/alex-pober/lynked.it"><FaCode/></a>
+            </div>
         </div>
     </>
     )
