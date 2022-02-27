@@ -81,6 +81,30 @@
     margin-right: 25px;
 }
 
-.footer a:hover{
-    text-decoration: underline;
-}
+.footer-title a {
+    display: inline;
+    position: relative;
+    overflow: hidden;
+  }
+  .footer-title a:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    right: 0;
+    width: 0;
+    bottom: -2px;
+    background: rgb(10, 132, 255);
+    height: 1px;
+    transition-property: width;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
+  }
+  .footer-title a:hover:after,
+  .footer-title a:focus:after,
+  .footer-title a:active:after {
+    left: 0;
+    right: auto;
+    width: 100%;
+  }
+
+  

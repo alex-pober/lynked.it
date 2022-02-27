@@ -8,21 +8,22 @@
 }
 
 .public-links a {
-    border-radius: 5px;
+    border-radius: 30px;
     display: flex;
     text-decoration: none;
-    font-size: 22px;
+    font-size: 3vh;
     border: 1px solid gray;
     padding: 10px;
     width: 250px;
     justify-content: center;
-    align-items: stretch;
+    align-items: center;
     white-space: 5px;
     margin: 5px;
     cursor: pointer;
     background-color: white;
     color: black;
     width: 80vw;
+    height: 5vh;
 }
 
 .user-info {
@@ -32,6 +33,30 @@
     align-items: center;
     z-index: 2;
     position: relative;
+}
+
+.public-bio {
+    display: flex;
+    font-size: 1.8vh;
+    padding-left: 60px;
+    padding-right: 60px;
+    margin: 0px;
+    margin-bottom: 30px;
+}
+
+.public-name{
+    font-size: 1.8vh;
+}
+
+.public-profile-pic{
+    border: 1px solid #d6d6d6;
+    object-fit: cover;
+    border-radius: 50%;
+    max-width: 10vh;
+    max-height: 10vh;
+    min-width: 10vh;
+    min-height: 10vh;
+    margin-top: 30px;
 }
 
 .public-background-pic {

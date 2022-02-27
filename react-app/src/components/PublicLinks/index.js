@@ -31,12 +31,12 @@ return (
         {/* <img className='public-background-pic' src={userValue?.bannerPicImg}></img> */}
         <div className="user-info">
             {userValue?.profilePicImg
-                ? <img className="mock-profile-pic"src={userValue?.profilePicImg}></img>
+                ? <img className="public-profile-pic"src={userValue?.profilePicImg}></img>
                 : null
             }
             {/* <img className="mock-profile-pic"src={userValue?.profilePicImg}></img> */}
-            <h2>{userValue?.name}</h2>
-            <p>{userValue?.bio}</p>
+            <h2 className="public-name">{userValue?.name}</h2>
+            <p className="public-bio">{userValue?.bio}</p>
         </div>
         <div className="public-links">
         {userValue?.menu

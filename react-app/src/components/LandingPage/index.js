@@ -41,8 +41,8 @@ return (
         <div className='footer'>
             <div className='footer-title'>
                 <p style={{fontWeight: 700, color: "rgb(99, 99, 102)"}}>Lynked.it</p>
-                <p style={{color: "rgb(174, 174, 178)"}}>Developed and Designed by
-                    <a href="https://alex-pober.github.io/" style={{fontWeight: 400}}> Alex Poberezhskiy</a></p>
+                <p style={{color: "rgb(174, 174, 178)"}}>Developed and Designed by&nbsp;
+                    <a href="https://alex-pober.github.io/" style={{fontWeight: 400}}>Alex Poberezhskiy</a></p>
             </div>
             <div className="footer-icons">
                 <a href="https://www.linkedin.com/in/alexpober"><FaLinkedinIn></FaLinkedinIn></a>
