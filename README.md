@@ -43,6 +43,6 @@ All links view
 - Heroku
 
 ## Technical Details
-One of the hardest things was to make embedded pdf links work across all browsers and all mobile phone. `<embed>` at first seemed like the proper tag to use to render all PDFs and Image links. Further testing made it clear that it would not work on Safari or mobil. So the other option was to try wrap the embed in Object tag. This worked but would no load image links anymore.
+One of the hardest things was to make embedded pdf links work across all browsers and all mobile phone. `<embed>` at first seemed like the proper tag to use to render all PDFs and Image links. Further testing made it clear that it would not work on Safari or mobile. So the other option was to try wrap the embed in Object tag. This worked but would not load image links anymore.
 ![enter image description here](https://i.imgur.com/IxtfPNv.png)
     Solution that I came up with that works across all website and mobile phones is simple. I made conditional rendering using react which checks if the link contains ".pdf" if it does it renders it in Object tag using google drive. If it doesn't contain .pdf it renders it in IMG tag.
